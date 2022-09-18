@@ -1,0 +1,17 @@
+.header {
+  position: absolute;
+  width: 880px;
+  height: 74px;
+  left: 200px;
+  top: 45px;
+  margin-top: 45px;
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+  left: 200px;
+  top: 45px;
+}
+
+
