@@ -1,4 +1,3 @@
-
 .profile {
   display: flex;
   align-items: center;
@@ -7,10 +6,10 @@
 
 .profile__info {
   display: grid;
-  grid-template-rows: 
+  grid-template-rows:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 373px) auto; 
+  grid-template-columns: minmax(auto, 373px) auto;
 }
 
 .profile__edit-button {
@@ -22,12 +21,12 @@
 .profile__add-button {
   height: 50px;
   width: 150px;
-  background: transparent url(../images/add_button.png) center no-repeat;  
+  background: transparent url(../images/add_button.png) center no-repeat;
   margin-left: auto;
 }
 
 .profile__title {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -36,7 +35,7 @@
 }
 
 .profile__description {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
