@@ -1,6 +1,7 @@
 .page {
   background: #000000;
   color: #fff;
+  min-height: 100vh;
 }
 
 .page__section {
