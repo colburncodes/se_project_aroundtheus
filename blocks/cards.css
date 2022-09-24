@@ -2,7 +2,7 @@
   font-family: "Inter", Arial, sans-serif;
   margin-top: 72px;
 }
-.card__list {
+.cards__list {
   display: grid;
   list-style: none;
   justify-content: center;
