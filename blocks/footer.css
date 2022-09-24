@@ -18,12 +18,11 @@
   .footer {
     margin: auto;
     margin-top: 48px;
-    padding-bottom: 36px;
-    padding-left: 19px;
-    padding-right: 19px;
   }
   .footer__title {
     line-height: 17px;
     font-size: 14px;
+    margin-left: 19px;
+    margin-bottom: 36px;
   }
 }
