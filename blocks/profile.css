@@ -18,10 +18,11 @@
 .profile__edit-button {
   height: 24px;
   width: 24px;
-  background: transparent url(../images/edit_button.png) center no-repeat;
+  background: transparent url(../images/edit-button.svg) center no-repeat;
   grid-area: button;
   transition: 0.3s;
   cursor: pointer;
+  border: 1px solid #FFFFFF;
 }
 
 .profile__edit-button:hover {
@@ -31,7 +32,7 @@
 .profile__add-button {
   height: 50px;
   width: 150px;
-  background: transparent url(../images/add_button.png) center no-repeat;
+  background: transparent url(../images/add-button.svg) center no-repeat;
   margin-left: auto;
   padding: 0;
   border: 2px solid #fff;
@@ -93,7 +94,6 @@
 
   .profile__add-button {
     width: 50px;
-    height: 50px;
   }
 }
 
