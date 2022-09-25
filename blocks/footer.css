@@ -17,12 +17,13 @@
 @media screen and (max-width: 480px) {
   .footer {
     margin: auto;
-    margin-top: 48px;
   }
   .footer__title {
     line-height: 17px;
     font-size: 14px;
+    margin-top: 48px;
     margin-left: 19px;
     margin-bottom: 36px;
+    margin-right: 19px; 
   }
 }
