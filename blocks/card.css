@@ -46,7 +46,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 219;
-  height: 29;
   flex-grow: 1;
+  margin: 0;
 }
