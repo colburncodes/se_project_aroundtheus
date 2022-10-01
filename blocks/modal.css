@@ -46,13 +46,31 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #000;
   border: 0;
   border-bottom: 1px solid #000000;
 }
 
 .modal__input-name {
   margin-bottom: 29px;
+  color: #000;
+}
+
+.modal__button-close {
+  position: absolute;
+  top: -16px;
+  right: 177px;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: transparent url(../images/close-button.svg) center no-repeat;
+  transform: rotate(-45deg);
+}
+
+.modal__button-close:hover {
+  opacity: 0.6;
 }
 
 .modal__button-save {
