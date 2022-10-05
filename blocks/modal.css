@@ -11,12 +11,17 @@
   margin-top: 195px;
   box-sizing: border-box;
   padding: 36px;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  background-color: 0px 0px 25px rgba(0, 0, 0, 0.15);
   font-family: "Inter", Arial, sans-serif;
+  display: none;
+}
+
+.modal__open {
+  display: flex;
 }
 
 .modal__container {
-  display: none;
+
   background-color: #fff;
   margin: 0 auto;
   max-width: 430px;
@@ -24,7 +29,10 @@
   border-radius: 10px;
   padding: 0;
   position: relative;
+  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
 }
+
+
 
 .modal__form {
   display: flex;
