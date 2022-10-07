@@ -147,7 +147,7 @@
             <input
               class="modal__input modal__input-name"
               type="text"
-              name="name"
+              name="title"
               placeholder="Name"
             />
             <input
@@ -161,6 +161,24 @@
         </div>
       </div>
     </div>
+    <!-- Template Cards -->
+    <template id="card-template">
+      <li class="card">
+        <img
+          class="card__image"
+          src="#"
+          alt="#"
+        />
+        <div class="card__label">
+          <h2 class="card__label-text"></h2>
+          <button
+            class="card__like-button"
+            type="button"
+            aria-label="heart"
+          ></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
