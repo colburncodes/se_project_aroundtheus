@@ -28,7 +28,6 @@ const initialCards = [
 /** BUTTON SELECTORS */
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileModalCloseButton = document.querySelector(".modal__close-button");
-
 /** MODAL SELECTORS */
 const profileEditModal = document.querySelector(".modal");
 const profileModalForm = document.querySelector(".modal__form");
@@ -49,24 +48,31 @@ openModal = (modal) => {
   modal.classList.add("modal__open");
 };
 
-closeModal = () => {
-  profileEditModal.classList.remove("modal__open");
+closeModal = (modal) => {
+  modal.classList.remove("modal__open");
 };
 
 /** Get Profile Form */
-getProfileForm = () => {
-  profileTitleElement.value = ""; 
-  profileDescriptionElement.value = "";
+fillProfileForm = () => {
+  profileTitleElement.value = profileTitleInput.textContent;
+  profileDescriptionElement.value = profileDescriptionInput.textContent;
 };
 
 /** Open Profile Modal */
 profileEditButton.addEventListener("click", () => {
-  getProfileForm();
+  fillProfileForm();
   openModal(profileEditModal);
 });
 
 /** Close Profile Modal */
-profileModalCloseButton.addEventListener("click", closeModal);
+profileModalCloseButton.addEventListener("click", () => {
+  closeModal(profileEditModal);
+});
+
+resetForm = () => {
+  profileTitleElement.value = "";
+  profileDescriptionElement.value = "";
+};
 
 /** Save User Function */
 submitProfileForm = (evt) => {
@@ -76,7 +82,8 @@ submitProfileForm = (evt) => {
 
   profileTitleInput.textContent = titleValue;
   profileDescriptionInput.textContent = descriptionValue;
-  closeModal();
+  resetForm();
+  closeModal(profileEditModal);
 };
 
 profileModalForm.addEventListener("submit", submitProfileForm);
@@ -95,7 +102,7 @@ getCardElement = (data) => {
 };
 
 /** Looping Card Array */
-initialCards.forEach(async (card) => {
-  const result = await getCardElement(card);
+initialCards.forEach((card) => {
+  const result = getCardElement(card);
   cardsList.prepend(result);
 });
