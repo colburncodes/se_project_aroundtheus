@@ -69,6 +69,7 @@ profileModalCloseButton.addEventListener("click", () => {
   closeModal(profileEditModal);
 });
 
+/** Reset Form Input Fields */
 resetForm = () => {
   profileTitleElement.value = "";
   profileDescriptionElement.value = "";
@@ -79,7 +80,8 @@ submitProfileForm = (evt) => {
   evt.preventDefault();
   const titleValue = evt.target.title.value;
   const descriptionValue = evt.target.description.value;
-
+  // not sure what you mean by inputs changed.
+  // it's remained the same so not sure what to do here.
   profileTitleInput.textContent = titleValue;
   profileDescriptionInput.textContent = descriptionValue;
   resetForm();
