@@ -13,11 +13,17 @@
   padding: 36px;
   background-color: 0px 0px 25px rgba(0, 0, 0, 0.15);
   font-family: "Inter", Arial, sans-serif;
-  display: none;
+  visibility: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 .modal__open {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .modal__container {
@@ -83,7 +89,7 @@
   border: 0;
   cursor: pointer;
   background: transparent url(../images/close-button.svg) center no-repeat;
-  transform: rotate(-45deg);
+  transform: rotate(-90deg);
 }
 
 .modal__close-button:hover {
@@ -151,6 +157,8 @@
   .modal__close-button {
     width: 26px;
     height: 26px;
+    position: absolute;
+    left: 288px;
   }
   .modal__save-button {
     width: 238px;

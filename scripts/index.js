@@ -25,95 +25,77 @@ const initialCards = [
   },
 ];
 
-/////////////////////
-/// BUTTONS
-/////////////////////
+/** BUTTON SELECTORS */
 const profileEditButton = document.querySelector(".profile__edit-button");
-const modalCloseButton = document.querySelector(".modal__close-button");
+const profileModalCloseButton = document.querySelector(".modal__close-button");
 
-/////////////////////
-/// MODAL
-/////////////////////
+/** MODAL SELECTORS */
 const profileEditModal = document.querySelector(".modal");
 const profileModalForm = document.querySelector(".modal__form");
-/////////////////////
-/// PROFILE
-/////////////////////
+/** PROFILE SELECTORS */
 const profileTitleInput = document.querySelector(".profile__title");
 const profileDescriptionInput = document.querySelector(".profile__description");
-const profileTitleEl = profileEditModal.querySelector(".modal__input-name");
-const profileDescriptionEl = profileEditModal.querySelector(
+const profileTitleElement =
+  profileEditModal.querySelector(".modal__input-name");
+const profileDescriptionElement = profileEditModal.querySelector(
   ".modal__input-description"
 );
-/////////////////////
-/// TEMPLATE
-/////////////////////s
+/** TEMPLATE SELECTORS */
 const cardTemplate = document.querySelector("#card-template").content;
 const cardsList = document.querySelector(".cards__list");
 
-/////////////////////
-/// UTILITY FUNCS
-/////////////////////
-openModal = () => {
-  profileEditModal.classList.add("modal__open");
+/** UTILITY FUNCTIONS */
+openModal = (modal) => {
+  modal.classList.add("modal__open");
 };
 
 closeModal = () => {
   profileEditModal.classList.remove("modal__open");
 };
 
-/////////////////////
-/// OPEN MODAL
-/////////////////////
+/** Get Profile Form */
+getProfileForm = () => {
+  profileTitleElement.value = ""; 
+  profileDescriptionElement.value = "";
+};
+
+/** Open Profile Modal */
 profileEditButton.addEventListener("click", () => {
-  profileTitleEl.value = profileTitleInput.textContent;
-  profileDescriptionEl.value = profileDescriptionInput.textContent;
-  openModal();
+  getProfileForm();
+  openModal(profileEditModal);
 });
 
-/////////////////////
-/// CLOSE MODAL
-/////////////////////
-modalCloseButton.addEventListener("click", closeModal);
+/** Close Profile Modal */
+profileModalCloseButton.addEventListener("click", closeModal);
 
-///////////////////////
-/// SUBMIT PROFILE FUNC
-///////////////////////
+/** Save User Function */
 submitProfileForm = (evt) => {
   evt.preventDefault();
   const titleValue = evt.target.title.value;
   const descriptionValue = evt.target.description.value;
 
-  if (titleValue !== "" || descriptionValue !== "") {
-    profileTitleInput.textContent = titleValue;
-    profileDescriptionInput.textContent = descriptionValue;
-  }
+  profileTitleInput.textContent = titleValue;
+  profileDescriptionInput.textContent = descriptionValue;
   closeModal();
 };
 
-/////////////////////
-/// SAVE USER DATA
-/////////////////////
 profileModalForm.addEventListener("submit", submitProfileForm);
 
-//////////////////////
-/// RENDER CARDS FUNC
-//////////////////////
+/** Render Cards Function */
 getCardElement = (data) => {
-  const cardDetails = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardImage = cardDetails.querySelector(".card__image");
-  const cardDescription = cardDetails.querySelector(".card__label-text");
+  const cardDetail = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardDetail.querySelector(".card__image");
+  const cardDescription = cardDetail.querySelector(".card__label-text");
 
-  cardImage.src = `${data.link}`;
-  cardImage.alt = `${data.name}`;
-  cardDescription.textContent = `${data.name}`;
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardDescription.textContent = data.name;
 
-  return cardDetails;
+  return cardDetail;
 };
 
-////////////////////////
-/// ITERATE CARDS ARRAY
-////////////////////////
-for (let card in initialCards) {
-  cardsList.prepend(getCardElement(initialCards[card]));
-}
+/** Looping Card Array */
+initialCards.forEach(async (card) => {
+  const result = await getCardElement(card);
+  cardsList.prepend(result);
+});
