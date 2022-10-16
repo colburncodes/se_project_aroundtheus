@@ -48,10 +48,10 @@
         <p class="footer__title">&copy; 2022 Around The U.S.</p>
       </footer>
     </div>
-    <!--Modal-->
-    <div class="modal">
+    <!-- Edit Modal-->
+    <div class="modal modal__edit">
       <div class="modal__container">
-        <button class="modal__close-button" type="button"></button>
+        <button class="modal__close-edit-button" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
         <form class="modal__form modal__open">
           <input
@@ -72,6 +72,31 @@
         </form>
       </div>
     </div>
+    <!--End of Profile Modal-->
+    <!-- Create Modal-->
+    <div class="modal modal__add">
+      <div class="modal__container">
+        <button class="modal__close-add-button"></button>
+        <h3 class="modal__title">New Place</h3>
+        <form class="modal__form modal__open">
+          <input
+            class="modal__input modal__input-name"
+            type="text"
+            name="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            class="modal__input modal__input-description"
+            type="text"
+            name="description"
+            placeholder="Image Url"
+            required
+          />
+          <button class="modal__save-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
     <!-- Template Cards -->
     <template id="card-template">
       <li class="card">
@@ -86,6 +111,7 @@
         </div>
       </li>
     </template>
+    <!--End of Template Card-->
     <script src="./scripts/index.js"></script>
   </body>
 </html>
