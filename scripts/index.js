@@ -62,7 +62,7 @@ fillProfileForm = () => {
   profileDescriptionElement.value = profileDescriptionInput.textContent;
 };
 
-/** Open Profile Modal */
+/** Open Profile | Create Modal */
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
   openModal(profileEditModal);
@@ -72,7 +72,7 @@ profileAddButton.addEventListener("click", () => {
   openModal(profileAddModal);
 });
 
-/** Close Profile Modal */
+/** Close Profile | Create Modal */
 profileModalCloseButton.addEventListener("click", () => {
   closeModal(profileEditModal);
 });
