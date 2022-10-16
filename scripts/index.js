@@ -25,13 +25,18 @@ const initialCards = [
   },
 ];
 
-/** BUTTON SELECTORS */
+/** BUTTON, MODAL, PROFILE, TEMPLATE SELECTORS */
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileModalCloseButton = document.querySelector(".modal__close-button");
-/** MODAL SELECTORS */
-const profileEditModal = document.querySelector(".modal");
+const profileAddButton = document.querySelector(".profile__add-button");
+const profileAddModalCloseButton = document.querySelector(
+  ".modal__close-add-button"
+);
+const profileModalCloseButton = document.querySelector(
+  ".modal__close-edit-button"
+);
+const profileAddModal = document.querySelector(".modal__add");
+const profileEditModal = document.querySelector(".modal__edit");
 const profileModalForm = document.querySelector(".modal__form");
-/** PROFILE SELECTORS */
 const profileTitleInput = document.querySelector(".profile__title");
 const profileDescriptionInput = document.querySelector(".profile__description");
 const profileTitleElement =
@@ -39,7 +44,6 @@ const profileTitleElement =
 const profileDescriptionElement = profileEditModal.querySelector(
   ".modal__input-description"
 );
-/** TEMPLATE SELECTORS */
 const cardTemplate = document.querySelector("#card-template").content;
 const cardsList = document.querySelector(".cards__list");
 
@@ -64,13 +68,20 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileEditModal);
 });
 
+profileAddButton.addEventListener("click", () => {
+  openModal(profileAddModal);
+});
+
 /** Close Profile Modal */
 profileModalCloseButton.addEventListener("click", () => {
   closeModal(profileEditModal);
 });
+profileAddModalCloseButton.addEventListener("click", () => {
+  closeModal(profileAddModal);
+});
 
-/** Reset Form Input Fields */
-resetForm = () => {
+/** Reset Edit Form Input Fields */
+resetEditForm = () => {
   profileTitleElement.value = "";
   profileDescriptionElement.value = "";
 };
@@ -80,11 +91,9 @@ submitProfileForm = (evt) => {
   evt.preventDefault();
   const titleValue = evt.target.title.value;
   const descriptionValue = evt.target.description.value;
-  // not sure what you mean by inputs changed.
-  // it's remained the same so not sure what to do here.
   profileTitleInput.textContent = titleValue;
   profileDescriptionInput.textContent = descriptionValue;
-  resetForm();
+  resetEditForm();
   closeModal(profileEditModal);
 };
 
