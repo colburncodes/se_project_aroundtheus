@@ -34,9 +34,30 @@
   transition: 0.8s;
   overflow: hidden;
   flex-shrink: 0;
+  color: red;
 }
 
 .card__like-button:hover {
+  opacity: 0.5;
+}
+
+.card__delete-button {
+  width: 18px;
+  height: 19px;
+  border: none;
+  cursor: pointer;
+  background: transparent url(../images/Trash.svg) center no-repeat;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: 0.8s;
+  left: 750px;
+  top: -8px;
+  position: absolute;
+  margin-top: 18px;
+  background-size: contain;
+}
+
+.card__delete-button:hover {
   opacity: 0.5;
 }
 

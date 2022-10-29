@@ -38,8 +38,6 @@
   background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
 }
 
-
-
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -75,7 +73,7 @@
   color: #000;
 }
 
-.modal__close-edit-button {
+.modal__close {
   display: block;
   position: absolute;
   top: -38px;
@@ -92,24 +90,7 @@
   transform: rotate(-90deg);
 }
 
-.modal__close-add-button {
-  display: block;
-  position: absolute;
-  top: -38px;
-  right: -39px;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  border: 0;
-  cursor: pointer;
-  background: transparent url(../images/close-button.svg) center no-repeat;
-  transform: rotate(-90deg);
-}
-
-.modal__close-button:hover {
+.modal__close:hover {
   opacity: 0.6;
 }
 
