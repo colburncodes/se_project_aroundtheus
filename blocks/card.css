@@ -9,6 +9,7 @@
 .card__image {
   width: 282px;
   height: 282px;
+  position: relative;
 }
 
 .card__label {
@@ -34,9 +35,29 @@
   transition: 0.8s;
   overflow: hidden;
   flex-shrink: 0;
+  fill: red;
 }
 
 .card__like-button:hover {
+  opacity: 0.5;
+}
+
+.card__delete-button {
+  width: 21px;
+  height: 18px;
+  border: none;
+  cursor: pointer;
+  background: transparent url(../images/Trash.svg) center no-repeat;
+  transition: 0.8s;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-size: 21px 18px;
+  /* top: 15px;
+  right: 15px; */
+}
+
+.card__delete-button:hover {
   opacity: 0.5;
 }
 
