@@ -68,7 +68,12 @@
   border-bottom: 1px solid #000000;
 }
 
-.modal__input-name {
+.modal__input-profile-name {
+  margin-bottom: 29px;
+  color: #000;
+}
+
+.modal__input-card-title {
   margin-bottom: 29px;
   color: #000;
 }

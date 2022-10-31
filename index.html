@@ -45,13 +45,14 @@
             <template id="card-template">
               <li class="card">
                 <img class="card__image" src="#" alt="#" />
-                <!-- <button
+                <button
                 class="card__delete-button"
                 type="button"
-                aria-label="delete"></button> -->
+                aria-label="delete"></button>
                 <div class="card__label">
                   <h2 class="card__label-text"></h2>
                   <button
+                    id="likeButton"
                     class="card__like-button"
                     type="button"
                     aria-label="heart"
@@ -73,14 +74,14 @@
         <h3 class="modal__title">Edit profile</h3>
         <form class="modal__form modal__open modal__form-edit">
           <input
-            class="modal__input modal__input-name"
+            class="modal__input modal__input-profile-name"
             type="text"
-            name="title"
+            name="name"
             placeholder="Name"
             required
           />
           <input
-            class="modal__input modal__input-description"
+            class="modal__input modal__input-profile-description"
             type="text"
             name="description"
             placeholder="Description"
@@ -101,7 +102,7 @@
             class="modal__input modal__input-card-title"
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Title"
             required
           />
           <input

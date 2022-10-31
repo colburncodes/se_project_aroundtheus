@@ -49,9 +49,11 @@ const profileDescriptionElement = document.querySelector(
 );
 
 /** Form data and elements */
-const profileTitleInput = editProfileModal.querySelector(".modal__input-name");
+const profileTitleInput = editProfileModal.querySelector(
+  ".modal__input-profile-name"
+);
 const profileDescriptionInput = editProfileModal.querySelector(
-  ".modal__input-description"
+  ".modal__input-profile-description"
 );
 const createCardTitleValue = createCardModal.querySelector(
   ".modal__input-card-title"
@@ -73,8 +75,10 @@ closeModal = (modal) => {
 
 /** Reset Edit Form Input Fields */
 resetEditForm = () => {
-  profileTitleInput.value = "";
-  profileDescriptionInput.value = "";
+  var title = (profileTitleInput.value = "");
+  console.log(title);
+  var description = (profileDescriptionInput.value = "");
+  console.log(description);
 };
 
 resetCreateForm = () => {
@@ -140,10 +144,13 @@ addFormSubmitHandler = (evt) => {
 createModalForm.addEventListener("click", addFormSubmitHandler);
 
 const handleLikeIcon = (evt) => {
-  evt.target.classList.toggle(".card__like-button");
+  evt.preventDefault();
+  let toggle = evt.target.classList.toggle(".card__like-button");
+  console.log(toggle);
 };
 
 const handleDeleteCard = (evt) => {
+  evt.preventDefault();
   evt.target.closest(".card").remove();
 };
 
@@ -160,16 +167,15 @@ const renderCards = (data) => {
   const card = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = card.querySelector(".card__image");
   const cardDescription = card.querySelector(".card__label-text");
-
   const likeButton = card.querySelector(".card__like-button");
-  // const deleteButton = card.querySelector(".card__delete-button");
+  const deleteButton = card.querySelector(".card__delete-button");
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardDescription.textContent = data.name;
 
-  likeButton.addEventListener("click", () => handleLikeIcon);
-  // deleteButton.addEventListener("click", () => handleDeleteCard);
+  likeButton.addEventListener("click", handleLikeIcon);
+  deleteButton.addEventListener("click", handleDeleteCard);
   cardImage.addEventListener("click", () => handlePreviewImage(data));
 
   return card;
