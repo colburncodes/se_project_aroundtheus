@@ -38,7 +38,7 @@ const imageModal = document.querySelector("#image-modal");
 
 /** BUTTON and DOM NODES */
 const openProfileEditButton = document.querySelector(".profile__edit-button");
-const openCreateProfileButton = document.querySelector(".profile__add-button");
+const openCreateCardButton = document.querySelector(".profile__add-button");
 const closeModalButtons = document.querySelectorAll(".modal__close");
 const closeImageModal = imageModal.querySelector(".modal__close");
 
@@ -75,10 +75,8 @@ closeModal = (modal) => {
 
 /** Reset Edit Form Input Fields */
 resetEditForm = () => {
-  var title = (profileTitleInput.value = "");
-  console.log(title);
-  var description = (profileDescriptionInput.value = "");
-  console.log(description);
+  profileTitleInput.value = "";
+  profileDescriptionInput.value = "";
 };
 
 resetCreateForm = () => {
@@ -98,7 +96,7 @@ openProfileEditButton.addEventListener("click", () => {
   openModal(editProfileModal);
 });
 
-openCreateProfileButton.addEventListener("click", () => {
+openCreateCardButton.addEventListener("click", () => {
   openModal(createCardModal);
 });
 
@@ -116,7 +114,7 @@ submitProfileForm = (evt) => {
   evt.preventDefault();
   profileTitleElement.textContent = profileTitleInput.value;
   profileDescriptionElement.textContent = profileDescriptionInput.value;
-  resetEditForm();
+  // resetEditForm();
   closeModal(editProfileModal);
 };
 
@@ -143,15 +141,14 @@ addFormSubmitHandler = (evt) => {
 
 createModalForm.addEventListener("click", addFormSubmitHandler);
 
-const handleLikeIcon = (evt) => {
-  evt.preventDefault();
-  let toggle = evt.target.classList.toggle(".card__like-button");
-  console.log(toggle);
-};
-
 const handleDeleteCard = (evt) => {
   evt.preventDefault();
   evt.target.closest(".card").remove();
+};
+
+const handleLikeIcon = (evt) => {
+  evt.preventDefault();
+  evt.target.classList.add("card__like-button");
 };
 
 const handlePreviewImage = (data) => {
@@ -180,6 +177,8 @@ const renderCards = (data) => {
 
   return card;
 };
+
+
 
 /** Looping Card Array */
 initialCards.forEach((card) => {
