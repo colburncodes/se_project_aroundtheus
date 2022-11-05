@@ -45,15 +45,14 @@
             <template id="card-template">
               <li class="card">
                 <img class="card__image" src="#" alt="#" />
+                <div class="card__label">
+                  <h2 class="card__label-text"></h2>
                   <button
                   class="card__delete-button"
                   type="button"
                   aria-label="delete"></button>
-
-                <div class="card__label">
-                  <h2 class="card__label-text"></h2>
                   <button
-                    class="card__like-button"
+                    class="card__like-button card__like-active"
                     type="button"
                     aria-label="heart"
                   ></button>
@@ -93,7 +92,7 @@
     </div>
     <!--End of Profile Modal-->
     <!-- Create Modal-->
-    <div class="modal modal__create">
+    <!-- <div class="modal modal__create">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
@@ -115,7 +114,7 @@
           <button class="modal__save-button" type="submit">Save</button>
         </form>
       </div>
-    </div>
+    </div> -->
     <!-- Image Modal -->
     <div class="modal" id="image-modal">
       <div class="modal__container modal__content-image">
