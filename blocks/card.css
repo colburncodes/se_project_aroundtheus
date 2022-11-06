@@ -16,7 +16,6 @@
   width: 18px;
   height: 19px;
   border: none;
-  cursor: pointer;
   background: transparent url(../images/Trash.svg) center no-repeat;
   transition: 0.8s;
   position: absolute;
@@ -27,8 +26,8 @@
 
 .card__delete-button:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
-
 
 .card__label {
   display: flex;
@@ -45,11 +44,9 @@
 }
 
 .card__like-button {
-  width: 21px;
-  height: 18px;
   border: none;
-  cursor: pointer;
-  background: transparent url(../images/heart.svg) center no-repeat;
+  background: no-repeat;
+  background-position: center;
   transition: 0.8s;
   overflow: hidden;
   flex-shrink: 0;
@@ -57,12 +54,13 @@
 
 .card__like-button:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .card__like-active {
-  fill: #000;
+  border: none;
+  background: transparent url(../images/Union.svg) center no-repeat;
 }
-
 
 .card__label-text {
   font-style: normal;
