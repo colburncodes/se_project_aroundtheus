@@ -72,18 +72,7 @@ closeModal = (modal) => {
 };
 
 /** Reset Edit Form Input Fields */
-// resetEditForm = () => {
-//   // profileTitleInput.value = "";
-//   // profileDescriptionInput.value = "";
-//   document.getElementById("modalEditForm").reset();
-// };
-
 profileModalForm.reset();
-
-// resetCreateForm = () => {
-//   createCardTitleValue.value = "";
-//   createCardImageUrlValue.value = "";
-// };
 createModalForm.reset();
 
 /** Get Profile Form */
@@ -124,7 +113,6 @@ submitProfileForm = (evt) => {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(editProfileModal);
-  resetEditForm();
 };
 
 profileModalForm.addEventListener("submit", submitProfileForm);
@@ -143,7 +131,6 @@ addFormSubmitHandler = (evt) => {
   const cardResult = createCard(card);
   cardsList.prepend(cardResult);
   closeModal(createCardModal);
-  //resetCreateForm();
 };;
 
 createModalForm.addEventListener("submit", addFormSubmitHandler);
