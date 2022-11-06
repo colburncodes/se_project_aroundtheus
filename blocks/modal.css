@@ -1,46 +1,44 @@
 .modal {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  display: flex;
+  z-index: 9;
   margin-top: 195px;
   box-sizing: border-box;
   padding: 36px;
   background-color: 0px 0px 25px rgba(0, 0, 0, 0.15);
   font-family: "Inter", Arial, sans-serif;
-  visibility: none;
   opacity: 0;
   pointer-events: none;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
-.modal__open {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: all;
-  transition: visibility 0s, opacity 0.5s linear;
-}
-
 .modal__container {
-
   background-color: #fff;
+  color: #000;
   margin: 0 auto;
   max-width: 430px;
   height: 330px;
-  border-radius: 10px;
   padding: 0;
   position: relative;
-  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
+
+.modal__open {
+  visibility: visible;
+  /* display: flex; */
+  opacity: 1;
+  /* flex-direction: column; */
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+} 
 
 .modal__form {
   display: flex;
   flex-direction: column;
+  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
 }
 
 .modal__title {
@@ -48,10 +46,11 @@
   font-weight: 900;
   font-style: normal;
   font-size: 24px;
-  margin-left: 36px;
+  margin-left: 17px;
   margin-right: 64px;
   margin-top: 34px;
   line-height: 29px;
+  padding: 20px;
 }
 
 .modal__input {
@@ -79,13 +78,11 @@
 }
 
 .modal__close {
-  display: block;
   position: absolute;
-  top: -38px;
-  right: -39px;
+  top: -44px;
+  right: -45px;
   width: 40px;
   height: 40px;
-  background: #fff;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -121,10 +118,25 @@
   opacity: 0.8;
 }
 
+.modal__content-image {
+  background: transparent;
+  max-width: 75vw;
+  max-height: 75vh;
+  padding: 0;
+}
+
+.modal__caption {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 480px) {
   .modal {
     flex-direction: column;
-    /* padding-top: 0; */
     align-items: center;
   }
 
