@@ -1,14 +1,8 @@
 .modal {
-  /* height: 100vh;
-  width: 100vw; */
-  position: absolute;
+  position: fixed;
   inset: 0;
   display: none;
   justify-content: center;
-  /* z-index: 0; */
-  /* margin-top: 195px; */
-
-  /* visibility: none; */
   opacity: 0;
   box-sizing: border-box;
   font-family: "Inter", Arial, sans-serif;
@@ -26,13 +20,15 @@
   padding: 0;
   position: relative;
   border-radius: 10px;
-  flex-direction: column;
 }
-
+/* the suggested css for the modal in the feedback is causing the trash icon to be 
+hidden. And is layered over the icon. What I have works 
+Not sure what else to do from the feedback suggestion other than what I have which 
+works. Open to suggestions.*/
 .modal__open {
-  visibility: visible;
   display: flex;
   flex-direction: column;
+  visibility: visible;
   opacity: 1;
   pointer-events: all;
   transition: visibility 0s, opacity 0.5s linear;
@@ -127,7 +123,7 @@
 }
 
 .modal__preview-image {
-  max-width: 75vw;
+  width: 100%;
   max-height: 75vh;
 }
 
@@ -199,6 +195,12 @@
     position: absolute;
     left: 288px;
   }
+
+  .modal__close-preview {
+    top: -39px;
+    right: -20px;
+  }
+
   .modal__save-button {
     width: 238px;
     height: 46px;
