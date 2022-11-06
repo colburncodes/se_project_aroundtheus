@@ -13,8 +13,8 @@
   box-sizing: border-box;
   font-family: "Inter", Arial, sans-serif;
   pointer-events: none;
-  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5); 
-  transition: visibility 0s 0.5s, opacity 0.5s linear; 
+  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 .modal__container {
@@ -38,12 +38,11 @@
   pointer-events: auto;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
   background-color: 0px 0px 25px rgba(0, 0, 0, 0.5); */
-  visibility: visible; 
-  opacity: 1; 
-  pointer-events: all; 
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
   transition: visibility 0s, opacity 0.5s linear;
-  
-} 
+}
 
 .modal__title {
   color: #000;
