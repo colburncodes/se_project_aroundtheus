@@ -72,16 +72,19 @@ closeModal = (modal) => {
 };
 
 /** Reset Edit Form Input Fields */
-resetEditForm = () => {
-  // profileTitleInput.value = "";
-  // profileDescriptionInput.value = "";
-  document.getElementById("modalEditForm").reset();
-};
+// resetEditForm = () => {
+//   // profileTitleInput.value = "";
+//   // profileDescriptionInput.value = "";
+//   document.getElementById("modalEditForm").reset();
+// };
 
-resetCreateForm = () => {
-  createCardTitleValue.value = "";
-  createCardImageUrlValue.value = "";
-};
+profileModalForm.reset();
+
+// resetCreateForm = () => {
+//   createCardTitleValue.value = "";
+//   createCardImageUrlValue.value = "";
+// };
+createModalForm.reset();
 
 /** Get Profile Form */
 fillProfileForm = () => {
@@ -129,8 +132,8 @@ profileModalForm.addEventListener("submit", submitProfileForm);
 /** Save Card Function */
 addFormSubmitHandler = (evt) => {
   evt.preventDefault();
-  let title = createCardTitleValue.value;
-  let url = createCardImageUrlValue.value;
+  const title = createCardTitleValue.value;
+  const url = createCardImageUrlValue.value;
 
   const card = {
     name: title,
@@ -140,8 +143,8 @@ addFormSubmitHandler = (evt) => {
   const cardResult = createCard(card);
   cardsList.prepend(cardResult);
   closeModal(createCardModal);
-  resetCreateForm();
-};
+  //resetCreateForm();
+};;
 
 createModalForm.addEventListener("submit", addFormSubmitHandler);
 
@@ -155,7 +158,7 @@ const handleLikeIcon = (evt) => {
 
 const handlePreviewImage = (data) => {
   cardImageElement.src = data.link;
-  cardImageElement.alt = `${data.name}`;
+  cardImageElement.alt = data.name;
 
   cardImageCaptionElement.textContent = data.name;
   openModal(imageModal);
