@@ -59,6 +59,8 @@
 
 .card__like-active {
   border: none;
+  flex-shrink: 0;
+  overflow: hidden;
   background: transparent url(../images/Union.svg) center no-repeat;
 }
 

@@ -56,10 +56,10 @@ const openCreateCardButton = document.querySelector(".profile__add-button");
 
 /** Image Modal */
 const imageModal = document.querySelector("#image-modal");
-const closeImageModal = imageModal.querySelector(".modal__close");
+const closeImageModal = imageModal.querySelector(".modal__close-preview");
 
 /** Form data and elements */
-const cardImageElement = imageModal.querySelector(".modal__image");
+const cardImageElement = imageModal.querySelector(".modal__preview-image");
 const cardImageCaptionElement = imageModal.querySelector(".modal__caption");
 
 /** HELPER FUNCTIONS */
@@ -107,6 +107,10 @@ closeModalButtons.forEach((modalCloseButton) => {
     const modal = modalCloseButton.closest(".modal");
     closeModal(modal);
   });
+});
+
+closeImageModal.addEventListener("click", () => {
+  closeModal(imageModal);
 });
 
 /** Save Profile Function */
