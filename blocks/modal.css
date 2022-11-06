@@ -7,7 +7,7 @@
   box-sizing: border-box;
   font-family: "Inter", Arial, sans-serif;
   pointer-events: none;
-  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
   transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
@@ -21,10 +21,16 @@
   position: relative;
   border-radius: 10px;
 }
-/* the suggested css for the modal in the feedback is causing the trash icon to be 
-hidden. And is layered over the icon. What I have works 
-Not sure what else to do from the feedback suggestion other than what I have which 
-works. Open to suggestions.*/
+
+/*
+  Removed the class from the html.
+  I hope that this is okay leaving this custom css class
+  and binding anonymously using it to handle 
+  open and closing as well as display.
+  Not sure if you meant moving all css property values 
+  to the modal container?
+*/
+
 .modal__open {
   display: flex;
   flex-direction: column;
@@ -179,13 +185,13 @@ works. Open to suggestions.*/
   .modal__title {
     width: 238px;
     height: 22px;
-    margin-left: 6px;
+    margin-left: 0px;
   }
 
   .modal__input {
     width: 238px;
     height: 14px;
-    margin-left: 41px;
+    margin-left: 19px;
     padding-bottom: 13px;
   }
 
@@ -206,5 +212,6 @@ works. Open to suggestions.*/
     height: 46px;
     margin: 0 auto;
     margin-top: 40px;
+    margin-left: 23px;
   }
 }
