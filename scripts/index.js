@@ -75,6 +75,7 @@ closeModal = (modal) => {
 resetEditForm = () => {
   profileTitleInput.value = "";
   profileDescriptionInput.value = "";
+  // document.getElementById("#modal__form").reset(); not having any success with reset
 };
 
 resetCreateForm = () => {
@@ -88,15 +89,18 @@ fillProfileForm = () => {
   profileDescriptionInput.value = profileDescription.textContent;
 };
 
-/** Open Profile | Create Modal */
-openProfileEditButton.addEventListener("click", () => {
+function handleProfileEditButton() {
   fillProfileForm();
   openModal(editProfileModal);
-});
+}
 
-openCreateCardButton.addEventListener("click", () => {
+function handleCreateCardButton() {
   openModal(createCardModal);
-});
+}
+
+/** Open Profile | Create Modal */
+openProfileEditButton.addEventListener("click", handleProfileEditButton);
+openCreateCardButton.addEventListener("click", handleCreateCardButton);
 
 /** Close Profile | Create Modal */
 closeModalButtons.forEach((modalCloseButton) => {
@@ -117,6 +121,7 @@ submitProfileForm = (evt) => {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(editProfileModal);
+  // resetEditForm();
 };
 
 profileModalForm.addEventListener("submit", submitProfileForm);
@@ -124,31 +129,27 @@ profileModalForm.addEventListener("submit", submitProfileForm);
 /** Save Card Function */
 addFormSubmitHandler = (evt) => {
   evt.preventDefault();
-  var title = createCardTitleValue.value;
-  var url = createCardImageUrlValue.value;
+  let title = createCardTitleValue.value;
+  let url = createCardImageUrlValue.value;
 
   const card = {
     name: title,
     link: url,
   };
 
-  if (card.name != "" && card.link != "") {
-    const cardResult = renderCards(card);
-    cardsList.prepend(cardResult);
-    closeModal(createCardModal);
-    resetCreateForm();
-  }
+  const cardResult = createCard(card);
+  cardsList.prepend(cardResult);
+  closeModal(createCardModal);
+  resetCreateForm();
 };
 
-createModalForm.addEventListener("click", addFormSubmitHandler);
+createModalForm.addEventListener("submit", addFormSubmitHandler);
 
 const handleDeleteCard = (evt) => {
-  evt.preventDefault();
   evt.target.closest(".card").remove();
 };
 
 const handleLikeIcon = (evt) => {
-  evt.preventDefault();
   evt.target.classList.toggle("card__like-active");
 };
 
@@ -156,12 +157,12 @@ const handlePreviewImage = (data) => {
   cardImageElement.src = data.link;
   cardImageElement.alt = `${data.name}`;
 
-  cardImageCaptionElement.textContent = `${data.name}`;
+  cardImageCaptionElement.textContent = data.name;
   openModal(imageModal);
 };
 
 /** Render Cards Function */
-const renderCards = (data) => {
+const createCard = (data) => {
   const card = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = card.querySelector(".card__image");
   const cardDescription = card.querySelector(".card__label-text");
@@ -181,6 +182,6 @@ const renderCards = (data) => {
 
 /** Looping Card Array */
 initialCards.forEach((card) => {
-  const result = renderCards(card);
-  cardsList.prepend(result);
+  const cardElement = createCard(card);
+  cardsList.prepend(cardElement);
 });
