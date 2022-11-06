@@ -32,7 +32,6 @@
 .card__label {
   display: flex;
   background: #fff;
-  color: #000;
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 20px;
@@ -41,6 +40,18 @@
   justify-content: space-between;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.card__label-text {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0;
+  color: #000;
 }
 
 .card__like-button {
@@ -64,13 +75,4 @@
   background: transparent url(../images/Union.svg) center no-repeat;
 }
 
-.card__label-text {
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-grow: 1;
-  margin: 0;
-}
+
