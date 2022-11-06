@@ -31,7 +31,7 @@ const cardsList = document.querySelector(".cards__list");
 const closeModalButtons = document.querySelectorAll(".modal__close");
 
 /** Profile Edit Modal */
-const editProfileModal = document.querySelector(".modal__edit");
+const editProfileModal = document.querySelector("#modal__edit");
 const profileModalForm = document.querySelector(".modal__form-edit");
 const openProfileEditButton = document.querySelector(".profile__edit-button");
 const profileTitle = document.querySelector(".profile__title");
@@ -44,7 +44,7 @@ const profileDescriptionInput = editProfileModal.querySelector(
 );
 
 /** Create Card Modal */
-const createCardModal = document.querySelector(".modal__create");
+const createCardModal = document.querySelector("#modal__create");
 const createModalForm = document.querySelector(".modal__form-create");
 const openCreateCardButton = document.querySelector(".profile__add-button");
 const createCardTitleValue = createCardModal.querySelector(
