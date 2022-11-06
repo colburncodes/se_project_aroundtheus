@@ -71,10 +71,6 @@ closeModal = (modal) => {
   modal.classList.remove("modal__open");
 };
 
-/** Reset Edit Form Input Fields */
-profileModalForm.reset();
-createModalForm.reset();
-
 /** Get Profile Form */
 fillProfileForm = () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -112,6 +108,7 @@ submitProfileForm = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  profileModalForm.reset();
   closeModal(editProfileModal);
 };
 
@@ -130,6 +127,7 @@ addFormSubmitHandler = (evt) => {
 
   const cardResult = createCard(card);
   cardsList.prepend(cardResult);
+  createModalForm.reset();
   closeModal(createCardModal);
 };;
 
