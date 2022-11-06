@@ -73,9 +73,9 @@ closeModal = (modal) => {
 
 /** Reset Edit Form Input Fields */
 resetEditForm = () => {
-  profileTitleInput.value = "";
-  profileDescriptionInput.value = "";
-  // document.getElementById("#modal__form").reset(); not having any success with reset
+  // profileTitleInput.value = "";
+  // profileDescriptionInput.value = "";
+  document.getElementById("modalEditForm").reset();
 };
 
 resetCreateForm = () => {
@@ -121,7 +121,7 @@ submitProfileForm = (evt) => {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(editProfileModal);
-  // resetEditForm();
+  resetEditForm();
 };
 
 profileModalForm.addEventListener("submit", submitProfileForm);

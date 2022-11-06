@@ -3,11 +3,11 @@
   width: 100vw; */
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   /* z-index: 0; */
   /* margin-top: 195px; */
-  flex-direction: column;
+
   /* visibility: none; */
   opacity: 0;
   box-sizing: border-box;
@@ -26,19 +26,13 @@
   padding: 0;
   position: relative;
   border-radius: 10px;
+  flex-direction: column;
 }
 
 .modal__open {
-  /* display: flex;
   visibility: visible;
+  display: flex;
   flex-direction: column;
-  opacity: 1;
-  top: 0;
-  left: 0;
-  pointer-events: auto;
-  transition: visibility 0s 0.5s, opacity 0.5s linear;
-  background-color: 0px 0px 25px rgba(0, 0, 0, 0.5); */
-  visibility: visible;
   opacity: 1;
   pointer-events: all;
   transition: visibility 0s, opacity 0.5s linear;
