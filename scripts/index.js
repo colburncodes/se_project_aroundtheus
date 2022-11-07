@@ -56,7 +56,7 @@ const createCardImageUrlValue = createCardModal.querySelector(
 
 /** Image Modal */
 const imageModal = document.querySelector("#image-modal");
-const closeImageModal = imageModal.querySelector(".modal__close-preview");
+const closeImageModal = imageModal.querySelector(".modal__close");
 
 /** Form data and elements */
 const cardImageElement = imageModal.querySelector(".modal__preview-image");
@@ -97,10 +97,6 @@ closeModalButtons.forEach((modalCloseButton) => {
     const modal = modalCloseButton.closest(".modal");
     closeModal(modal);
   });
-});
-
-closeImageModal.addEventListener("click", () => {
-  closeModal(imageModal);
 });
 
 /** Save Profile Function */
