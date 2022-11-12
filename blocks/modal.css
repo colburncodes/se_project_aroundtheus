@@ -55,6 +55,15 @@
   border-bottom: 1px solid #000000;
 }
 
+.modal__input:valid {
+  border-bottom: 1px solid green;
+}
+
+.modal__input:invalid {
+  border-bottom: 1px solid red;
+}
+
+
 .modal__input-profile-name {
   margin-bottom: 29px;
   color: #000;
@@ -149,6 +158,20 @@
   cursor: pointer;
   background: transparent url(../images/close-button.svg) center no-repeat;
   transform: rotate(-90deg);
+}
+
+.modal__input_type_error {
+  position: absolute;
+  width: 164px;
+  height: 12px;
+  left: 44px;
+  top: 151px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  border-bottom-color: red;
 }
 
 @media screen and (max-width: 480px) {

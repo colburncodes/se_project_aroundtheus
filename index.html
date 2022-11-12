@@ -74,27 +74,30 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
         <form class="modal__form modal__form-edit" id="modalEditForm">
-          <input
-            class="modal__input modal__input-profile-name"
-            type="text"
-            name="name"
-            placeholder="Name"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span class="form__input-error name-input-error"></span>
-          <input
-            class="modal__input modal__input-profile-description"
-            type="text"
-            name="description"
-            placeholder="Description"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span class="form__input-error description-input-error"></span>
-          <button class="modal__save-button" type="submit">Save</button>
+          <fieldset class="edit-modal__fieldset" novalidate>
+            <input
+            id="profile-name"
+              class="modal__input modal__input-profile-name"
+              type="text"
+              name="name"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__input_type_error profile-name-error"></span>
+            <input
+              class="modal__input modal__input-profile-description"
+              type="text"
+              name="description"
+              placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="modal__input_type_error profile-description-error"></span>
+            <button class="modal__save-button" type="submit">Save</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -105,7 +108,8 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form modal__form-create">
-          <input
+          <fieldset class="create-modal__fieldset" novalidate>
+            <input
             class="modal__input modal__input-card-title"
             type="text"
             name="title"
@@ -114,7 +118,7 @@
             maxlength="30"
             required
           />
-          <span class="form__input-error title-input-error"></span>
+          <span class="modal__input_type_error title-input-error"></span>
           <input
             class="modal__input modal__input-card-url"
             type="url"
@@ -123,8 +127,9 @@
             pattern="https://.*"
             required
           />
-          <span class="form__input-error url-input-error"></span>
+          <span class="modal__input_type_error url-input-error"></span>
           <button class="modal__save-button" type="submit">Save</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -136,7 +141,7 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
