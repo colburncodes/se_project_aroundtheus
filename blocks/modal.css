@@ -64,7 +64,6 @@
 }
 
 .modal__input-profile-name {
-  margin-bottom: 29px;
   color: #000;
 }
 
@@ -104,7 +103,7 @@
   font-size: 18px;
   font-style: normal;
   line-height: 22px;
-  margin-top: 37px;
+  margin-top: 27px;
   border: 0;
   cursor: pointer;
 }
@@ -162,6 +161,9 @@
   font-size: 12px;
   line-height: 15px;
   color: red;
+  margin-left: 35px;
+  margin-top: 5px;
+  /* margin-bottom: 13px; */
 }
 
 .modal__inut-error_active {
@@ -169,15 +171,14 @@
 }
 
 .modal__button_disabled {
-  background: #fff;
+  /* background: #fff;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 22px; */
   text-align: center;
-  color: #000;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (max-width: 480px) {
@@ -208,6 +209,7 @@
   }
 
   .modal__input {
+    margin: 0 auto;
     width: 238px;
     height: 14px;
     margin-left: 19px;
@@ -230,7 +232,11 @@
     width: 238px;
     height: 46px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 21px;
+  }
+
+  .modal__input_type_error {
+    margin-left: 18px;
   }
 }

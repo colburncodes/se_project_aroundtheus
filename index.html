@@ -80,7 +80,8 @@
           novalidate
         >
           <fieldset class="edit-modal__fieldset" novalidate>
-            <input
+            <label>
+              <input
               id="profile-name"
               class="modal__input modal__input-profile-name"
               type="text"
@@ -91,6 +92,7 @@
               required
             />
             <span class="modal__input_type_error profile-name-error"></span>
+            </label>
             <input
               id="profile-description"
               class="modal__input modal__input-profile-description"
@@ -122,7 +124,8 @@
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form modal__form-create">
           <fieldset class="create-modal__fieldset" novalidate>
-            <input
+            <label>
+              <input
               id="card-title"
               class="modal__input modal__input-card-title"
               type="text"
@@ -133,6 +136,7 @@
               required
             />
             <span class="modal__input_type_error card-title-error"></span>
+            </label>
             <input
               id="card-url"
               class="modal__input modal__input-card-url"
