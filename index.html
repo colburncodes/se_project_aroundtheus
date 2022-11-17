@@ -48,16 +48,17 @@
                 <div class="card__label">
                   <h2 class="card__label-text"></h2>
                   <button
-                  class="card__delete-button"
-                  type="button"
-                  aria-label="delete"></button>
+                    class="card__delete-button"
+                    type="button"
+                    aria-label="delete"
+                  ></button>
                   <button
                     class="card__like-button"
                     type="button"
                     aria-label="heart"
                   >
-                  <img src="./images//heart.svg" alt="Heart Icon"/>
-                </button>
+                    <img src="./images//heart.svg" alt="Heart Icon" />
+                  </button>
                 </div>
               </li>
             </template>
@@ -73,10 +74,14 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form class="modal__form modal__form-edit" id="modalEditForm" novalidate>
+        <form
+          class="modal__form modal__form-edit"
+          id="modalEditForm"
+          novalidate
+        >
           <fieldset class="edit-modal__fieldset" novalidate>
             <input
-            id="profile-name"
+              id="profile-name"
               class="modal__input modal__input-profile-name"
               type="text"
               name="name"
@@ -87,7 +92,7 @@
             />
             <span class="modal__input_type_error profile-name-error"></span>
             <input
-            id="profile-description"
+              id="profile-description"
               class="modal__input modal__input-profile-description"
               type="text"
               name="description"
@@ -96,8 +101,15 @@
               maxlength="200"
               required
             />
-            <span class="modal__input_type_error profile-description-error"></span>
-            <button class="modal__save-button" type="submit">Save</button>
+            <span
+              class="modal__input_type_error profile-description-error"
+            ></span>
+            <button
+              class="modal__save-button modal__button_disabled"
+              type="submit"
+            >
+              Save
+            </button>
           </fieldset>
         </form>
       </div>
@@ -111,25 +123,32 @@
         <form class="modal__form modal__form-create">
           <fieldset class="create-modal__fieldset" novalidate>
             <input
-            class="modal__input modal__input-card-title"
-            type="text"
-            name="title"
-            placeholder="Title"
-            minlength="1"
-            maxlength="30"
-            required
-          />
-          <span class="modal__input_type_error title-input-error"></span>
-          <input
-            class="modal__input modal__input-card-url"
-            type="url"
-            name="url"
-            placeholder="Image Url"
-            pattern="https://.*"
-            required
-          />
-          <span class="modal__input_type_error url-input-error"></span>
-          <button class="modal__save-button" type="submit">Save</button>
+              id="card-title"
+              class="modal__input modal__input-card-title"
+              type="text"
+              name="title"
+              placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__input_type_error card-title-error"></span>
+            <input
+              id="card-url"
+              class="modal__input modal__input-card-url"
+              type="url"
+              name="url"
+              placeholder="Image Url"
+              pattern="https://.*"
+              required
+            />
+            <span class="modal__input_type_error card-url-error"></span>
+            <button
+              class="modal__save-button modal__button_disabled"
+              type="submit"
+            >
+              Save
+            </button>
           </fieldset>
         </form>
       </div>
@@ -138,7 +157,7 @@
     <div class="modal" id="image-modal">
       <div class="modal__container modal__content-image">
         <button type="button" class="modal__close"></button>
-        <img class="modal__preview-image" alt="#"  src="#"/>
+        <img class="modal__preview-image" alt="#" src="#" />
         <p class="modal__caption"></p>
       </div>
     </div>
