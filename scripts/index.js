@@ -62,16 +62,16 @@ const imageModal = document.querySelector("#image-modal");
 const cardImageElement = imageModal.querySelector(".modal__preview-image");
 const cardImageCaptionElement = imageModal.querySelector(".modal__caption");
 
-const isEscapeEvent = (evt, action) => {
-  const modalPopup = document.querySelector(".modal__open");
+const isEscapeEvent = (evt) => {
+  const modal = document.querySelector(".modal__open");
   if (evt.which === ESC_KEYCODE) {
-    action(modalPopup);
+    closeModal(modal);
   }
 };
 
 const handleEscapePopup = (evt) => {
   evt.preventDefault();
-  isEscapeEvent(evt, closeModalButtons);
+  isEscapeEvent(evt);
 };
 
 /** HELPER FUNCTIONS */

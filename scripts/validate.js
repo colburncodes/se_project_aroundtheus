@@ -1,6 +1,7 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add("modal__input_type_error");
+  console.log(errorMessage);
   errorElement.textContent = errorMessage;
   errorElement.classList.add("modal__input-error_active");
 };
@@ -48,17 +49,12 @@ const setEventListeners = (formElement) => {
 };
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".modal"));
+  const formList = Array.from(document.querySelectorAll(".modal__form"));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
-    const fieldsetList = Array.from(
-      formElement.querySelectorAll(".modal__set")
-    );
-    fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet);
-    });
+    setEventListeners(formElement);
   });
 };
 

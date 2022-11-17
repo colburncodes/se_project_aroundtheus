@@ -73,7 +73,7 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form class="modal__form modal__form-edit" id="modalEditForm">
+        <form class="modal__form modal__form-edit" id="modalEditForm" novalidate>
           <fieldset class="edit-modal__fieldset" novalidate>
             <input
             id="profile-name"
@@ -87,6 +87,7 @@
             />
             <span class="modal__input_type_error profile-name-error"></span>
             <input
+            id="profile-description"
               class="modal__input modal__input-profile-description"
               type="text"
               name="description"
