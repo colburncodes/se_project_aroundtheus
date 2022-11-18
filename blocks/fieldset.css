@@ -5,19 +5,9 @@
   flex-direction: column;
 }
 
-.edit-modal__fieldset {
+.modal__form-fieldset {
   border: none;
   margin: 0;
   padding: 0;
   max-height: 0;
-}
-
-.create-modal__fieldset {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.modal__input-error_active {
-  opacity: 1;
 }

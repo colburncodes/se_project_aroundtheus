@@ -166,19 +166,11 @@
   /* margin-bottom: 13px; */
 }
 
-.modal__inut-error_active {
-  color: red;
-}
-
 .modal__button_disabled {
-  /* background: #fff;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px; */
-  text-align: center;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid #000;
+  cursor: not-allowed;
+  border-radius: 2px;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 480px) {
