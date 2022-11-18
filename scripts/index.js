@@ -1,3 +1,4 @@
+const ESC_KEYCODE = 27;
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -60,6 +61,18 @@ const imageModal = document.querySelector("#image-modal");
 /** Form data and elements */
 const cardImageElement = imageModal.querySelector(".modal__preview-image");
 const cardImageCaptionElement = imageModal.querySelector(".modal__caption");
+
+const isEscapeEvent = (evt) => {
+  const modal = document.querySelector(".modal__open");
+  if (evt.which === ESC_KEYCODE) {
+    closeModal(modal);
+  }
+};
+
+const handleEscapePopup = (evt) => {
+  evt.preventDefault();
+  isEscapeEvent(evt);
+};
 
 /** HELPER FUNCTIONS */
 openModal = (modal) => {
@@ -124,7 +137,7 @@ addFormSubmitHandler = (evt) => {
   cardsList.prepend(cardResult);
   createModalForm.reset();
   closeModal(createCardModal);
-};;
+};
 
 createModalForm.addEventListener("submit", addFormSubmitHandler);
 

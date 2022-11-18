@@ -48,16 +48,17 @@
                 <div class="card__label">
                   <h2 class="card__label-text"></h2>
                   <button
-                  class="card__delete-button"
-                  type="button"
-                  aria-label="delete"></button>
+                    class="card__delete-button"
+                    type="button"
+                    aria-label="delete"
+                  ></button>
                   <button
                     class="card__like-button"
                     type="button"
                     aria-label="heart"
                   >
-                  <img src="./images//heart.svg" alt="Heart Icon"/>
-                </button>
+                    <img src="./images//heart.svg" alt="Heart Icon" />
+                  </button>
                 </div>
               </li>
             </template>
@@ -73,22 +74,45 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form class="modal__form modal__form-edit" id="modalEditForm">
-          <input
-            class="modal__input modal__input-profile-name"
-            type="text"
-            name="name"
-            placeholder="Name"
-            required
-          />
-          <input
-            class="modal__input modal__input-profile-description"
-            type="text"
-            name="description"
-            placeholder="Description"
-            required
-          />
-          <button class="modal__save-button" type="submit">Save</button>
+        <form
+          class="modal__form modal__form-edit"
+          id="modalEditForm"
+          novalidate
+        >
+          <fieldset class="modal__form-fieldset" novalidate>
+            <label>
+              <input
+              id="profile-name"
+              class="modal__input modal__input-profile-name"
+              type="text"
+              name="name"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__input_type_error profile-name-error"></span>
+            </label>
+            <input
+              id="profile-description"
+              class="modal__input modal__input-profile-description"
+              type="text"
+              name="description"
+              placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__input_type_error profile-description-error"
+            ></span>
+            <button
+              class="modal__save-button modal__button_disabled"
+              type="submit"
+            >
+              Save
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -99,21 +123,37 @@
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form modal__form-create">
-          <input
-            class="modal__input modal__input-card-title"
-            type="text"
-            name="title"
-            placeholder="Title"
-            required
-          />
-          <input
-            class="modal__input modal__input-card-url"
-            type="text"
-            name="url"
-            placeholder="Image Url"
-            required
-          />
-          <button class="modal__save-button" type="submit">Save</button>
+          <fieldset class="modal__form-fieldset" novalidate>
+            <label>
+              <input
+              id="card-title"
+              class="modal__input modal__input-card-title"
+              type="text"
+              name="title"
+              placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__input_type_error card-title-error"></span>
+            </label>
+            <input
+              id="card-url"
+              class="modal__input modal__input-card-url"
+              type="url"
+              name="url"
+              placeholder="Image Url"
+              pattern="https://.*"
+              required
+            />
+            <span class="modal__input_type_error card-url-error"></span>
+            <button
+              class="modal__save-button modal__button_disabled"
+              type="submit"
+            >
+              Save
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -121,10 +161,11 @@
     <div class="modal" id="image-modal">
       <div class="modal__container modal__content-image">
         <button type="button" class="modal__close"></button>
-        <img class="modal__preview-image" alt="#"  src="#"/>
+        <img class="modal__preview-image" alt="#" src="#" />
         <p class="modal__caption"></p>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

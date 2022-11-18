@@ -55,13 +55,19 @@
   border-bottom: 1px solid #000000;
 }
 
+.modal__input:valid {
+  border-bottom: 1px solid green;
+}
+
+.modal__input:invalid {
+  border-bottom: 1px solid red;
+}
+
 .modal__input-profile-name {
-  margin-bottom: 29px;
   color: #000;
 }
 
 .modal__input-card-title {
-  margin-bottom: 29px;
   color: #000;
 }
 
@@ -97,7 +103,7 @@
   font-size: 18px;
   font-style: normal;
   line-height: 22px;
-  margin-top: 37px;
+  margin-top: 27px;
   border: 0;
   cursor: pointer;
 }
@@ -151,6 +157,22 @@
   transform: rotate(-90deg);
 }
 
+.modal__input_type_error {
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  margin-left: 35px;
+  margin-top: 5px;
+  /* margin-bottom: 13px; */
+}
+
+.modal__button_disabled {
+  border: 1px solid #000;
+  cursor: not-allowed;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 480px) {
   .modal {
     flex-direction: column;
@@ -179,6 +201,7 @@
   }
 
   .modal__input {
+    margin: 0 auto;
     width: 238px;
     height: 14px;
     margin-left: 19px;
@@ -201,7 +224,11 @@
     width: 238px;
     height: 46px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 21px;
+  }
+
+  .modal__input_type_error {
+    margin-left: 18px;
   }
 }

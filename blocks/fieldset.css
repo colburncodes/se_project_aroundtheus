@@ -1,0 +1,13 @@
+.modal__form {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__form-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+}
