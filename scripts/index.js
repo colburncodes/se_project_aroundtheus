@@ -1,4 +1,4 @@
-const ESC_KEYCODE = 27;
+const ESC_KEY_VALUE = "Escape";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -62,25 +62,27 @@ const imageModal = document.querySelector("#image-modal");
 const cardImageElement = imageModal.querySelector(".modal__preview-image");
 const cardImageCaptionElement = imageModal.querySelector(".modal__caption");
 
-const isEscapeEvent = (evt) => {
-  const modal = document.querySelector(".modal__open");
-  if (evt.which === ESC_KEYCODE) {
-    closeModal(modal);
+const isEscapeEvent = (evt, action) => {
+  const activeModal = document.querySelector(".modal__open");
+  if (evt.key === ESC_KEY_VALUE) {
+    action(activeModal);
   }
 };
 
 const handleEscapePopup = (evt) => {
   evt.preventDefault();
-  isEscapeEvent(evt);
+  isEscapeEvent(evt, closeModal);
 };
 
 /** HELPER FUNCTIONS */
 openModal = (modal) => {
   modal.classList.add("modal__open");
+  document.addEventListener("keyup", handleEscapePopup);
 };
 
 closeModal = (modal) => {
   modal.classList.remove("modal__open");
+  document.removeEventListener("keyup", handleEscapePopup);
 };
 
 /** Get Profile Form */
