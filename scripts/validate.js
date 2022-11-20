@@ -22,6 +22,7 @@ const checkInputValidity = (input, settings) => {
 
 const toggleButtonState = (inputs, buttons, settings) => {
   const isValid = inputs.every((input) => input.validity.valid);
+  console.log(isValid);
   if (isValid) {
     buttons.classList.toggle(settings.inactiveButtonClass);
   } else {
@@ -54,7 +55,7 @@ const enableValidation = ({
 enableValidation({
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSeletor: ".modal__save-button",
+  submitButtonSeletor: "modal__save-button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: ".modal__input_type_error",
   errorClass: "modal__error_visible",
