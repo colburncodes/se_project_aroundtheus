@@ -157,7 +157,7 @@
   transform: rotate(-90deg);
 }
 
-.modal__input_type_error {
+.modal__input-error {
   font-size: 12px;
   line-height: 15px;
   color: red;
@@ -166,7 +166,7 @@
   /* margin-bottom: 13px; */
 }
 
-.modal__button_disabled {
+.modal__button-disabled {
   border: 1px solid #000;
   cursor: not-allowed;
   border-radius: 2px;
@@ -228,7 +228,7 @@
     margin-left: 21px;
   }
 
-  .modal__input_type_error {
+  .modal__input-error {
     margin-left: 18px;
   }
 }
