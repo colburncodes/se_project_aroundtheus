@@ -74,7 +74,6 @@ const handleEscapePopup = (evt) => {
   isEscapeEvent(evt, closeModal);
 };
 
-/** HELPER FUNCTIONS */
 openModal = (modal) => {
   modal.classList.add("modal__open");
   document.addEventListener("keyup", handleEscapePopup);
@@ -85,7 +84,6 @@ closeModal = (modal) => {
   document.removeEventListener("keyup", handleEscapePopup);
 };
 
-/** Get Profile Form */
 fillProfileForm = () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -100,11 +98,9 @@ function handleCreateCardButton() {
   openModal(createCardModal);
 }
 
-/** Open Profile | Create Modal */
 openProfileEditButton.addEventListener("click", handleProfileEditButton);
 openCreateCardButton.addEventListener("click", handleCreateCardButton);
 
-/** Close Profile | Create Modal */
 closeModalButtons.forEach((modalCloseButton) => {
   modalCloseButton.addEventListener("click", (evt) => {
     evt.preventDefault();
@@ -113,7 +109,6 @@ closeModalButtons.forEach((modalCloseButton) => {
   });
 });
 
-/** Save Profile Function */
 submitProfileForm = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -124,7 +119,6 @@ submitProfileForm = (evt) => {
 
 profileModalForm.addEventListener("submit", submitProfileForm);
 
-/** Save Card Function */
 addFormSubmitHandler = (evt) => {
   evt.preventDefault();
   const title = createCardTitleValue.value;
@@ -159,7 +153,6 @@ const handlePreviewImage = (data) => {
   openModal(imageModal);
 };
 
-/** Render Cards Function */
 const createCard = (data) => {
   const card = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = card.querySelector(".card__image");
@@ -178,7 +171,6 @@ const createCard = (data) => {
   return card;
 };
 
-/** Looping Card Array */
 initialCards.forEach((card) => {
   const cardElement = createCard(card);
   cardsList.prepend(cardElement);
