@@ -22,9 +22,9 @@ const checkInputValidity = (input, settings) => {
 
 const toggleButtonState = (inputs, buttons, settings) => {
   const isValid = inputs.every((input) => input.validity.valid);
-  console.log(isValid);
   if (isValid) {
-    buttons.classList.toggle(settings.inactiveButtonClass);
+    buttons.classList.remove(settings.inactiveButtonClass);
+    buttons.removeAttribute("disabled");
   } else {
     buttons.classList.add(settings.inactiveButtonClass);
   }
@@ -43,6 +43,14 @@ const enableValidation = ({
     });
     const inputs = [...formElement.querySelectorAll(inputSelector)];
     const button = formElement.querySelector(submitButtonSeletor);
+
+    toggleButtonState(inputs, button, settings);
+    formElement.addEventListener("reset", () => {
+      setTimeout(() => {
+        toggleButtonState(inputs, button, settings);
+      }, 0); // it’s enough to put 0 ms here
+    });
+
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         checkInputValidity(input, settings);
@@ -55,7 +63,7 @@ const enableValidation = ({
 enableValidation({
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
-  submitButtonSeletor: "modal__save-button",
+  submitButtonSeletor: ".modal__save-button",
   inactiveButtonClass: "modal__button-disabled",
   inputErrorClass: ".modal__input-error",
   errorClass: "modal__error_visible",
