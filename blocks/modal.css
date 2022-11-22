@@ -158,12 +158,13 @@
 }
 
 .modal__input-error {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: red;
-  margin-left: 35px;
-  margin-top: 5px;
-  /* margin-bottom: 13px; */
+  transition: opacity 0.3s;
+  margin: 0 36px;
 }
 
 .modal__button-disabled {

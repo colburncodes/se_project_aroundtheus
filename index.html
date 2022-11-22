@@ -80,19 +80,18 @@
           novalidate
         >
           <fieldset class="modal__form-fieldset">
-            <label>
-              <input
-                id="profile-name"
-                class="modal__input modal__input-profile-name"
-                type="text"
-                name="name"
-                placeholder="Name"
-                minlength="2"
-                maxlength="40"
-                required
-              />
-              <span class="modal__input-error profile-name-error"></span>
-            </label>
+            <input
+              id="profile-name"
+              class="modal__input modal__input-profile-name"
+              type="text"
+              name="name"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__input-error profile-name-error"></span>
+
             <input
               id="profile-description"
               class="modal__input modal__input-profile-description"
@@ -103,9 +102,7 @@
               maxlength="200"
               required
             />
-            <span
-              class="modal__input-error profile-description-error"
-            ></span>
+            <span class="modal__input-error profile-description-error"></span>
             <button
               class="modal__save-button modal__button-disabled"
               type="submit"
@@ -125,7 +122,6 @@
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form modal__form-create" novalidate>
           <fieldset class="modal__form-fieldset">
-            <label>
               <input
                 id="card-title"
                 class="modal__input modal__input-card-title"
@@ -137,7 +133,6 @@
                 required
               />
               <span class="modal__input-error card-title-error"></span>
-            </label>
             <input
               id="card-url"
               class="modal__input modal__input-card-url"
