@@ -101,18 +101,16 @@ function handleCreateCardButton() {
 openProfileEditButton.addEventListener("click", handleProfileEditButton);
 openCreateCardButton.addEventListener("click", handleCreateCardButton);
 
-closeModalButtons.forEach(() => {
-  const popups = document.querySelectorAll(".modal");
+const popups = document.querySelectorAll(".modal");
 
-  popups.forEach((popup) => {
-    popup.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("modal__open")) {
-        closeModal(popup);
-      }
-      if (evt.target.classList.contains("modal__close")) {
-        closeModal(popup);
-      }
-    });
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal__open")) {
+      closeModal(popup);
+    }
+    if (evt.target.classList.contains("modal__close")) {
+      closeModal(popup);
+    }
   });
 });
 
