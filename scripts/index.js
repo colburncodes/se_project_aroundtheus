@@ -1,5 +1,6 @@
-import FormValidator from "./FormValidator.js";
+import { openModal, closeModal } from "./utils.js";
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const ESC_KEY_VALUE = "Escape";
 const initialCards = [
@@ -30,7 +31,6 @@ const initialCards = [
 ];
 
 /** Card Template */
-const cardTemplate = document.querySelector("#card-template").content;
 const cardsList = document.querySelector(".cards__list");
 
 /** Profile Edit Modal */
@@ -56,35 +56,6 @@ const createCardTitleValue = createCardModal.querySelector(
 const createCardImageUrlValue = createCardModal.querySelector(
   ".modal__input-card-url"
 );
-
-/** Image Modal */
-const imageModal = document.querySelector("#image-modal");
-
-/** Form data and elements */
-const cardImageElement = imageModal.querySelector(".modal__preview-image");
-const cardImageCaptionElement = imageModal.querySelector(".modal__caption");
-
-const isEscapeEvent = (evt, action) => {
-  if (evt.key === ESC_KEY_VALUE) {
-    const activeModal = document.querySelector(".modal__open");
-    action(activeModal);
-  }
-};
-
-const handleEscapePopup = (evt) => {
-  evt.preventDefault();
-  isEscapeEvent(evt, closeModal);
-};
-
-const openModal = (modal) => {
-  modal.classList.add("modal__open");
-  document.addEventListener("keyup", handleEscapePopup);
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("modal__open");
-  document.removeEventListener("keyup", handleEscapePopup);
-};
 
 const fillProfileForm = () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -136,52 +107,17 @@ const submitCardForm = (evt) => {
     link: url,
   };
 
-  const cardResult = createCard(card);
-  cardsList.prepend(cardResult);
+  const newCard = new Card(card, "#card-template")._generateCard();
+  cardsList.prepend(newCard);
   createModalForm.reset();
   closeModal(createCardModal);
 };
 
 createModalForm.addEventListener("submit", submitCardForm);
 
-const handleDeleteCard = (evt) => {
-  evt.target.closest(".card").remove();
-};
-
-const handleLikeIcon = (evt) => {
-  evt.target.classList.toggle("card__like-active");
-};
-
-const handlePreviewImage = (data) => {
-  cardImageElement.src = data.link;
-  cardImageElement.alt = data.name;
-
-  cardImageCaptionElement.textContent = data.name;
-  openModal(imageModal);
-};
-
-const createCard = (data) => {
-  const card = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardImage = card.querySelector(".card__image");
-  const cardDescription = card.querySelector(".card__label-text");
-  const likeButton = card.querySelector(".card__like-button");
-  const deleteButton = card.querySelector(".card__delete-button");
-
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardDescription.textContent = data.name;
-
-  deleteButton.addEventListener("click", handleDeleteCard);
-  likeButton.addEventListener("click", handleLikeIcon);
-  cardImage.addEventListener("click", () => handlePreviewImage(data));
-  return card;
-};
-
 initialCards.map((card) => {
-  const cardElement = createCard(card);
   const newCard = new Card(card, "#card-template")._generateCard();
-  // console.log(newCard);
-  cardsList.prepend(cardElement);
+  cardsList.prepend(newCard);
 });
 
 // validation activation
