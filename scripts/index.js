@@ -1,3 +1,6 @@
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
+
 const ESC_KEY_VALUE = "Escape";
 const initialCards = [
   {
@@ -29,7 +32,6 @@ const initialCards = [
 /** Card Template */
 const cardTemplate = document.querySelector("#card-template").content;
 const cardsList = document.querySelector(".cards__list");
-const closeModalButtons = document.querySelectorAll(".modal__close");
 
 /** Profile Edit Modal */
 const editProfileModal = document.querySelector("#modal__edit");
@@ -74,17 +76,17 @@ const handleEscapePopup = (evt) => {
   isEscapeEvent(evt, closeModal);
 };
 
-openModal = (modal) => {
+const openModal = (modal) => {
   modal.classList.add("modal__open");
   document.addEventListener("keyup", handleEscapePopup);
 };
 
-closeModal = (modal) => {
+const closeModal = (modal) => {
   modal.classList.remove("modal__open");
   document.removeEventListener("keyup", handleEscapePopup);
 };
 
-fillProfileForm = () => {
+const fillProfileForm = () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 };
@@ -172,11 +174,41 @@ const createCard = (data) => {
   deleteButton.addEventListener("click", handleDeleteCard);
   likeButton.addEventListener("click", handleLikeIcon);
   cardImage.addEventListener("click", () => handlePreviewImage(data));
-
   return card;
 };
 
-initialCards.forEach((card) => {
+initialCards.map((card) => {
   const cardElement = createCard(card);
+  const newCard = new Card(card, "#card-template")._generateCard();
+  // console.log(newCard);
   cardsList.prepend(cardElement);
 });
+
+// validation activation
+const defaultFormConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSeletor: ".modal__save-button",
+  inactiveButtonClass: "modal__button-disabled",
+  inputErrorClass: ".modal__input-error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormModalWindow = document.querySelector(
+  defaultFormConfig.formSelector
+);
+const editFormValidator = new FormValidator(
+  editFormModalWindow,
+  defaultFormConfig
+);
+
+const createFormModalWindow = document.querySelector(
+  defaultFormConfig.formSelector
+);
+const createFormValidator = new FormValidator(
+  createFormModalWindow,
+  defaultFormConfig
+);
+
+editFormValidator.enableValidation();
+createFormValidator.enableValidation();
