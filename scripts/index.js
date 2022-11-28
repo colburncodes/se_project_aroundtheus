@@ -177,10 +177,10 @@ const createCard = (data) => {
   return card;
 };
 
-initialCards.forEach((card) => {
+initialCards.map((card) => {
   const cardElement = createCard(card);
   const newCard = new Card(card, "#card-template")._generateCard();
-  console.log(newCard);
+  // console.log(newCard);
   cardsList.prepend(cardElement);
 });
 
