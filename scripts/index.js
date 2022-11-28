@@ -2,7 +2,6 @@ import { openModal, closeModal } from "./utils.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
-const ESC_KEY_VALUE = "Escape";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -130,17 +129,13 @@ const defaultFormConfig = {
   errorClass: "modal__error_visible",
 };
 
-const editFormModalWindow = document.querySelector(
-  defaultFormConfig.formSelector
-);
+const editFormModalWindow = document.querySelector("#modal__edit");
 const editFormValidator = new FormValidator(
   editFormModalWindow,
   defaultFormConfig
 );
 
-const createFormModalWindow = document.querySelector(
-  defaultFormConfig.formSelector
-);
+const createFormModalWindow = document.querySelector("#modal__create");
 const createFormValidator = new FormValidator(
   createFormModalWindow,
   defaultFormConfig

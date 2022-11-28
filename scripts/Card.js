@@ -38,7 +38,6 @@ class Card {
   }
 
   _setEventListeners() {
-    console.log(this);
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
