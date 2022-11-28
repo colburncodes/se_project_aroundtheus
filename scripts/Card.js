@@ -1,34 +1,8 @@
-// refactor later in its own module
-const ESC_KEY_VALUE = "Escape";
-
-const isEscapeEvent = (evt, action) => {
-  if (evt.key === ESC_KEY_VALUE) {
-    const activeModal = document.querySelector(".modal__open");
-    action(activeModal);
-  }
-};
-
-const handleEscapePopup = (evt) => {
-  evt.preventDefault();
-  isEscapeEvent(evt, closeModal);
-};
-
-const imageModal = document.querySelector("#image-modal");
-
-const openModal = (modal) => {
-  modal.classList.add("modal__open");
-  document.addEventListener("keyup", handleEscapePopup);
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("modal__open");
-  document.removeEventListener("keyup", handleEscapePopup);
-};
+import { imageModal, openModal } from "./utils.js";
 
 class Card {
   constructor(data, cardSelector) {
-    this._name = data.name;
-    this._link = data.link;
+    this._data = data;
     this._cardSelector = cardSelector;
   }
 
@@ -52,14 +26,13 @@ class Card {
     this._element = null;
   }
 
-  _handlePreviewImage() {
-    console.log(this._image);
-    const cardImage = this._element.querySelector(".modal__preview-image");
-    const cardDescription = this._element.querySelector(".modal__caption");
+  _handlePreviewImage(data) {
+    const cardImage = imageModal.querySelector(".modal__preview-image");
+    const cardDescription = imageModal.querySelector(".modal__caption");
 
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    cardDescription.textContent = this._name;
+    cardImage.src = data.link;
+    cardImage.alt = data.name;
+    cardDescription.textContent = data.name;
 
     openModal(imageModal);
   }
@@ -76,18 +49,17 @@ class Card {
 
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage());
+      .addEventListener("click", () => this._handlePreviewImage(this._data));
   }
 
   _generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
-    this._element.querySelector(".card__image").alt = this._name;
-    this._element.querySelector(".card__label-text").textContent = this._name;
+    this._element.querySelector(".card__image").src = this._data.link;
+    this._element.querySelector(".card__image").alt = this._data.name;
+    this._element.querySelector(".card__label-text").textContent =
+      this._data.name;
 
     return this._element;
   }
