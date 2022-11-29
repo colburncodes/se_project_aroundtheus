@@ -64,17 +64,17 @@ class FormValidator {
         this._settings.submitButtonSeletor
       );
 
-      this._toggleButtonState(inputs, button, this._settings);
+      this._toggleButtonState();
       formElement.addEventListener("reset", () => {
         setTimeout(() => {
-          this._toggleButtonState(inputs, button, this._settings);
+          this._toggleButtonState();
         }, 0); // it’s enough to put 0 ms here
       });
 
       inputs.forEach((input) => {
         input.addEventListener("input", () => {
           this._checkInputValidity(input, this._settings);
-          this._toggleButtonState(inputs, button, this._settings);
+          this._toggleButtonState();
         });
       });
     });
