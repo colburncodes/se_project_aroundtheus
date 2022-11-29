@@ -106,7 +106,7 @@ const submitCardForm = (evt) => {
     link: url,
   };
 
-  const newCard = new Card(card, "#card-template")._generateCard();
+  const newCard = new Card(card, "#card-template").generateCard();
   cardsList.prepend(newCard);
   createModalForm.reset();
   closeModal(createCardModal);
@@ -115,7 +115,7 @@ const submitCardForm = (evt) => {
 createModalForm.addEventListener("submit", submitCardForm);
 
 initialCards.map((card) => {
-  const newCard = new Card(card, "#card-template")._generateCard();
+  const newCard = new Card(card, "#card-template").generateCard();
   cardsList.prepend(newCard);
 });
 

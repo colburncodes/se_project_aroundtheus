@@ -1,4 +1,4 @@
-import { imageModal, openModal } from "./utils.js";
+import { openModal } from "./utils.js";
 
 class Card {
   constructor(data, cardSelector) {
@@ -15,11 +15,10 @@ class Card {
     return cardTemplate;
   }
 
-  _handleLikeIcon() {
+  _handleLikeIcon = () =>
     this._element
       .querySelector(".card__like-button")
       .classList.toggle("card__like-active");
-  }
 
   _handleDeleteCard() {
     this._element.remove();
@@ -27,6 +26,7 @@ class Card {
   }
 
   _handlePreviewImage(data) {
+    const imageModal = document.querySelector("#image-modal");
     const cardImage = imageModal.querySelector(".modal__preview-image");
     const cardDescription = imageModal.querySelector(".modal__caption");
 
@@ -51,7 +51,7 @@ class Card {
       .addEventListener("click", () => this._handlePreviewImage(this._data));
   }
 
-  _generateCard() {
+  generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
