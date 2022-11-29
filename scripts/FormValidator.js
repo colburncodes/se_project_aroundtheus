@@ -60,10 +60,6 @@ class FormValidator {
         ...formElement.querySelectorAll(this._settings.inputSelector),
       ];
 
-      const button = formElement.querySelector(
-        this._settings.submitButtonSeletor
-      );
-
       this._toggleButtonState();
       formElement.addEventListener("reset", () => {
         setTimeout(() => {
