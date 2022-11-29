@@ -26,14 +26,24 @@ class FormValidator {
     }
   };
 
-  _toggleButtonState = (inputs, buttons, settings) => {
-    const isValid = inputs.every((input) => input.validity.valid);
+  _checkFormValidity = () => {
+    const inputList = [
+      ...this._formElement.querySelectorAll(this._settings.inputSelector),
+    ];
+    return inputList.every((input) => input.validity.valid);
+  };
+
+  _toggleButtonState = () => {
+    const isValid = this._checkFormValidity();
+    const button = this._formElement.querySelector(
+      this._settings.submitButtonSeletor
+    );
     if (isValid) {
-      buttons.classList.remove(settings.inactiveButtonClass);
-      buttons.removeAttribute("disabled");
+      button.classList.remove(this._settings.inactiveButtonClass);
+      button.removeAttribute("disabled");
     } else {
-      buttons.setAttribute("disabled", "");
-      buttons.classList.add(settings.inactiveButtonClass);
+      button.setAttribute("disabled", "true");
+      button.classList.add(this._settings.inactiveButtonClass);
     }
   };
 
