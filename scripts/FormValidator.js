@@ -77,4 +77,29 @@ class FormValidator {
   }
 }
 
-export default FormValidator;
+const editProfileModal = document.querySelector("#modal__edit");
+const createCardModal = document.querySelector("#modal__create");
+// validation activation
+const defaultFormConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSeletor: ".modal__save-button",
+  inactiveButtonClass: "modal__button-disabled",
+  inputErrorClass: "modal__input-error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(
+  editProfileModal,
+  defaultFormConfig
+);
+
+const createFormValidator = new FormValidator(
+  createCardModal,
+  defaultFormConfig
+);
+
+editFormValidator.enableValidation();
+createFormValidator.enableValidation();
+
+export { editFormValidator, createFormValidator };

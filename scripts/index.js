@@ -1,6 +1,6 @@
-import { openModal, closeModal } from "./utils.js";
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import { openModal, closeModal } from "./utils.js";
+import { editFormValidator, createFormValidator } from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -128,26 +128,5 @@ initialCards.map((card) => {
 });
 
 // validation activation
-const defaultFormConfig = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSeletor: ".modal__save-button",
-  inactiveButtonClass: "modal__button-disabled",
-  inputErrorClass: "modal__input-error",
-  errorClass: "modal__error_visible",
-};
-
-const editFormModalWindow = document.querySelector("#modal__edit");
-const editFormValidator = new FormValidator(
-  editFormModalWindow,
-  defaultFormConfig
-);
-
-const createFormModalWindow = document.querySelector("#modal__create");
-const createFormValidator = new FormValidator(
-  createFormModalWindow,
-  defaultFormConfig
-);
-
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();
