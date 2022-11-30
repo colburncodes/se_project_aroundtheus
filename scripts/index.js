@@ -96,6 +96,16 @@ const submitProfileForm = (evt) => {
 
 profileModalForm.addEventListener("submit", submitProfileForm);
 
+const createCard = (card) => {
+  const newCard = new Card(card, "#card-template");
+  return newCard.generateCard();
+};
+
+const renderCard = (card) => {
+  const cardElement = createCard(card);
+  cardsList.prepend(cardElement);
+};
+
 const submitCardForm = (evt) => {
   evt.preventDefault();
   const title = createCardTitleValue.value;
@@ -106,8 +116,7 @@ const submitCardForm = (evt) => {
     link: url,
   };
 
-  const newCard = new Card(card, "#card-template").generateCard();
-  cardsList.prepend(newCard);
+  renderCard(card);
   createModalForm.reset();
   closeModal(createCardModal);
 };
@@ -115,8 +124,7 @@ const submitCardForm = (evt) => {
 createModalForm.addEventListener("submit", submitCardForm);
 
 initialCards.map((card) => {
-  const newCard = new Card(card, "#card-template").generateCard();
-  cardsList.prepend(newCard);
+  renderCard(card);
 });
 
 // validation activation
@@ -125,7 +133,7 @@ const defaultFormConfig = {
   inputSelector: ".modal__input",
   submitButtonSeletor: ".modal__save-button",
   inactiveButtonClass: "modal__button-disabled",
-  inputErrorClass: ".modal__input-error",
+  inputErrorClass: "modal__input-error",
   errorClass: "modal__error_visible",
 };
 
