@@ -55,14 +55,6 @@
   border-bottom: 1px solid #000000;
 }
 
-.modal__input:valid {
-  border-bottom: 1px solid green;
-}
-
-.modal__input:invalid {
-  border-bottom: 1px solid red;
-}
-
 .modal__input-profile-name {
   color: #000;
 }
@@ -165,6 +157,14 @@
   color: red;
   transition: opacity 0.3s;
   margin: 0 36px;
+}
+
+.modal__input-error:valid {
+  border-bottom: 1px solid green;
+}
+
+.modal__input-error:invalid {
+  border-bottom: 1px solid red;
 }
 
 .modal__button-disabled {
