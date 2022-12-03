@@ -20,6 +20,13 @@ The way you'll do this at work is by exporting images directly from Figma — we
   
 Good luck and have fun!
 
+** Technologies
+* HTML
+* CSS
+* BEM
+* JavaScript
+
+-- later it will become a full blown MERN stack app.
 
 ## Live Link 
 https://colburncodes.github.io/se_project_aroundtheus/
