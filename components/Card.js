@@ -1,4 +1,4 @@
-import { openModal } from "./utils.js";
+import { openModal } from "../utils/utils.js";
 
 class Card {
   constructor(data, cardSelector) {
