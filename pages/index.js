@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
-import { openModal, closeModal } from "../utils/utils.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
 import {
   editFormValidator,
   createFormValidator,
@@ -7,13 +8,14 @@ import {
 
 import {
   initialCards,
-  cardsList,
+  selectors,
   createCardModal,
   createModalForm,
   openCreateCardButton,
   createCardTitleValue,
   createCardImageUrlValue,
   editProfileModal,
+  modalSelector,
   profileModalForm,
   profileTitle,
   profileDescription,
@@ -21,36 +23,22 @@ import {
   profileDescriptionInput,
   openProfileEditButton,
 } from "../utils/constants.js";
-import Section from "../components/Section.js";
+
+const modalPopup = new Popup(modalSelector);
+modalPopup.setEventListeners();
 
 const fillProfileForm = () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 };
 
-function handleProfileEditButton() {
+openCreateCardButton.addEventListener("click", () => {
+  modalPopup.openModal(createCardModal);
+});
+
+openProfileEditButton.addEventListener("click", () => {
   fillProfileForm();
-  openModal(editProfileModal);
-}
-
-function handleCreateCardButton() {
-  openModal(createCardModal);
-}
-
-openProfileEditButton.addEventListener("click", handleProfileEditButton);
-openCreateCardButton.addEventListener("click", handleCreateCardButton);
-
-const popups = document.querySelectorAll(".modal");
-
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal__open")) {
-      closeModal(popup);
-    }
-    if (evt.target.classList.contains("modal__close")) {
-      closeModal(popup);
-    }
-  });
+  modalPopup.openModal(editProfileModal);
 });
 
 const submitProfileForm = (evt) => {
@@ -58,7 +46,7 @@ const submitProfileForm = (evt) => {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   profileModalForm.reset();
-  closeModal(editProfileModal);
+  modalPopup.closeModal(editProfileModal);
 };
 
 profileModalForm.addEventListener("submit", submitProfileForm);
@@ -67,6 +55,17 @@ const createCard = (card) => {
   const newCard = new Card(card, "#card-template");
   return newCard.generateCard();
 };
+
+const sectionList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item);
+      sectionList.addItem(card);
+    },
+  },
+  selectors.cardsSection
+);
 
 const renderCard = (card) => {
   const cardElement = createCard(card);
@@ -85,20 +84,12 @@ const submitCardForm = (evt) => {
 
   renderCard(card);
   createModalForm.reset();
-  closeModal(createCardModal);
+  modalPopup.closeModal(createCardModal);
 };
 
 createModalForm.addEventListener("submit", submitCardForm);
 
-const sectionList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    renderCard(item);
-  },
-  cardsList,
-});
-
-sectionList.renderItems();
+sectionList.renderItems(initialCards);
 
 // validation activation
 editFormValidator.enableValidation();

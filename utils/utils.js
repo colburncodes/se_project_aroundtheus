@@ -17,4 +17,4 @@ const closeModal = (modal) => {
   document.removeEventListener("keyup", handleEscapePopup);
 };
 
-export { handleEscapePopup, openModal, closeModal };
+export { handleEscapePopup, openModal, closeModal, ESC_KEY_VALUE };
