@@ -1,4 +1,9 @@
 import { openModal } from "../utils/utils.js";
+import {
+  imageModal,
+  createCardModal,
+  openCreateCardButton,
+} from "../utils/constants.js";
 
 class Card {
   constructor(data, cardSelector) {
@@ -26,7 +31,6 @@ class Card {
   }
 
   _handlePreviewImage(data) {
-    const imageModal = document.querySelector("#image-modal");
     const cardImage = imageModal.querySelector(".modal__preview-image");
     const cardDescription = imageModal.querySelector(".modal__caption");
 
