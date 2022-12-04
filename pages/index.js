@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
+import UserInfo from "../components/UserInfo.js";
 import {
   editFormValidator,
   createFormValidator,
@@ -15,36 +16,36 @@ import {
   createCardTitleValue,
   createCardImageUrlValue,
   editProfileModal,
-  modalSelector,
   profileModalForm,
-  profileTitle,
-  profileDescription,
   profileTitleInput,
   profileDescriptionInput,
   openProfileEditButton,
 } from "../utils/constants.js";
 
-const modalPopup = new Popup(modalSelector);
+const modalPopup = new Popup(selectors.modalSelector);
 modalPopup.setEventListeners();
 
-const fillProfileForm = () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-};
+var userInfo = new UserInfo(
+  selectors.profileTitle,
+  selectors.profileDescription
+);
 
 openCreateCardButton.addEventListener("click", () => {
   modalPopup.openModal(createCardModal);
 });
 
 openProfileEditButton.addEventListener("click", () => {
-  fillProfileForm();
+  userInfo.getUserInfo();
   modalPopup.openModal(editProfileModal);
 });
 
 const submitProfileForm = (evt) => {
   evt.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  const profile = {
+    title: profileTitleInput.value,
+    description: profileDescriptionInput.value,
+  };
+  userInfo.setUserInfo(profile);
   profileModalForm.reset();
   modalPopup.closeModal(editProfileModal);
 };

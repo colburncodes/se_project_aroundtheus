@@ -31,6 +31,9 @@ export const selectors = {
   cardsSection: ".cards__list",
   cardTemplate: "#card-template",
   profileModalForm: ".modal__form-edit",
+  modalSelector: ".modal",
+  profileTitle: ".profile__title",
+  profileDescription: ".profile__description",
 };
 
 /** Create Card Modal */
