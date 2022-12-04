@@ -69,7 +69,7 @@ const sectionList = new Section(
 
 const renderCard = (card) => {
   const cardElement = createCard(card);
-  cardsList.prepend(cardElement);
+  sectionList.addItem(cardElement);
 };
 
 const submitCardForm = (evt) => {
@@ -86,7 +86,6 @@ const submitCardForm = (evt) => {
   createModalForm.reset();
   modalPopup.closeModal(createCardModal);
 };
-
 createModalForm.addEventListener("submit", submitCardForm);
 
 sectionList.renderItems(initialCards);
