@@ -46,6 +46,7 @@ const userInfoPopup = new PopupWithForm({
   popupSelector: editProfileModal,
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
+    profileModalPopup.closeModal(editProfileModal);
   },
 });
 userInfoPopup.setEventListeners();
@@ -83,6 +84,7 @@ const cardInfoPopup = new PopupWithForm({
     };
     renderCard(data);
     createModalForm.reset();
+    createCardPopup.closeModal(createCardModal);
   },
 });
 cardInfoPopup.setEventListeners();
