@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   editFormValidator,
@@ -13,16 +14,14 @@ import {
   createCardModal,
   createModalForm,
   openCreateCardButton,
-  createCardTitleValue,
-  createCardImageUrlValue,
+  cardTitleValue,
+  cardImageValue,
   editProfileModal,
-  profileModalForm,
-  profileTitleInput,
-  profileDescriptionInput,
+  modalSelector,
   openProfileEditButton,
 } from "../utils/constants.js";
 
-const modalPopup = new Popup(selectors.modalSelector);
+const modalPopup = new Popup(modalSelector);
 modalPopup.setEventListeners();
 
 var userInfo = new UserInfo(
@@ -30,27 +29,26 @@ var userInfo = new UserInfo(
   selectors.profileDescription
 );
 
+const createCardPopup = new Popup(createCardModal);
+createCardPopup.setEventListeners();
 openCreateCardButton.addEventListener("click", () => {
-  modalPopup.openModal(createCardModal);
+  createCardPopup.openModal(createCardModal);
 });
 
+const profileModalPopup = new Popup(editProfileModal);
+profileModalPopup.setEventListeners();
 openProfileEditButton.addEventListener("click", () => {
   userInfo.getUserInfo();
   modalPopup.openModal(editProfileModal);
 });
 
-const submitProfileForm = (evt) => {
-  evt.preventDefault();
-  const profile = {
-    title: profileTitleInput.value,
-    description: profileDescriptionInput.value,
-  };
-  userInfo.setUserInfo(profile);
-  profileModalForm.reset();
-  modalPopup.closeModal(editProfileModal);
-};
-
-profileModalForm.addEventListener("submit", submitProfileForm);
+const userInfoPopup = new PopupWithForm({
+  popupSelector: editProfileModal,
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
+userInfoPopup.setEventListeners();
 
 const createCard = (card) => {
   const newCard = new Card(card, "#card-template");
@@ -62,6 +60,7 @@ const sectionList = new Section(
     items: initialCards,
     renderer: (item) => {
       const card = createCard(item);
+
       sectionList.addItem(card);
     },
   },
@@ -73,24 +72,22 @@ const renderCard = (card) => {
   sectionList.addItem(cardElement);
 };
 
-const submitCardForm = (evt) => {
-  evt.preventDefault();
-  const title = createCardTitleValue.value;
-  const url = createCardImageUrlValue.value;
-
-  const card = {
-    name: title,
-    link: url,
-  };
-
-  renderCard(card);
-  createModalForm.reset();
-  modalPopup.closeModal(createCardModal);
-};
-createModalForm.addEventListener("submit", submitCardForm);
+const cardInfoPopup = new PopupWithForm({
+  popupSelector: createCardModal,
+  handleFormSubmit: () => {
+    const title = cardTitleValue.value;
+    const url = cardImageValue.value;
+    const data = {
+      name: title,
+      link: url,
+    };
+    renderCard(data);
+    createModalForm.reset();
+  },
+});
+cardInfoPopup.setEventListeners();
 
 sectionList.renderItems(initialCards);
-
 // validation activation
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();

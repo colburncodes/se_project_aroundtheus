@@ -18,7 +18,7 @@ class UserInfo {
 
   setUserInfo(data) {
     const profile = {
-      title: data.title,
+      title: data.name,
       description: data.description,
     };
 

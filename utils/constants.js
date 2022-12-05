@@ -34,6 +34,7 @@ export const selectors = {
   modalSelector: ".modal",
   profileTitle: ".profile__title",
   profileDescription: ".profile__description",
+  createCardModal: "#modal__create",
 };
 
 /** Create Card Modal */
@@ -43,10 +44,10 @@ export const createModalForm = document.querySelector(".modal__form-create");
 export const openCreateCardButton = document.querySelector(
   ".profile__add-button"
 );
-export const createCardTitleValue = createCardModal.querySelector(
+export const cardTitleValue = createCardModal.querySelector(
   ".modal__input-card-title"
 );
-export const createCardImageUrlValue = createCardModal.querySelector(
+export const cardImageValue = createCardModal.querySelector(
   ".modal__input-card-url"
 );
 export const cardTemplateSelector = document.getElementById("#card-template");
@@ -70,6 +71,3 @@ export const profileDescriptionInput = editProfileModal.querySelector(
 
 export const imageModal = document.querySelector("#image-modal");
 export const modalSelector = document.querySelector(".modal");
-export const modalOpen = document.querySelector(".modal__open");
-export const modalClose = document.querySelector(".modal__close");
-export const modalFormSelector = document.querySelector(".modal__form");
