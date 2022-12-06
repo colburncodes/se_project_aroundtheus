@@ -39,7 +39,7 @@ const profileModalPopup = new Popup(editProfileModal);
 profileModalPopup.setEventListeners();
 openProfileEditButton.addEventListener("click", () => {
   userInfo.getUserInfo();
-  modalPopup.openModal(editProfileModal);
+  profileModalPopup.openModal(editProfileModal);
 });
 
 const userInfoPopup = new PopupWithForm({
