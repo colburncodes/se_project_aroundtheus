@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="author" content="colburn" />
-    <meta name="description" content="Project 3" />
-    <meta name="keywords" content="HTML, CSS, BEM, FIGMA" />
+    <meta name="author" content="colburn sanders" />
+    <meta name="description" content="Project 8" />
+    <meta name="keywords" content="HTML, CSS, BEM, FIGMA, JavaScript" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The US</title>
@@ -14,14 +14,18 @@
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img class="header__logo" src="./images/logo.svg" alt="Around the US" />
+        <img
+          class="header__logo"
+          src="<%=require('../src/images/logo.svg')%>"
+          alt="Around the US"
+        />
       </header>
       <main class="content">
         <!--Profile Section-->
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="../src/images/jacques-cousteau.jpg"
             alt="Avatar"
           />
           <div class="profile__info">
@@ -57,7 +61,7 @@
                     type="button"
                     aria-label="heart"
                   >
-                    <img src="./images//heart.svg" alt="Heart Icon" />
+                    <img src="../src/images/heart.svg" alt="Heart Icon" />
                   </button>
                 </div>
               </li>
@@ -91,7 +95,6 @@
               required
             />
             <span class="modal__input-error profile-name-error"></span>
-
             <input
               id="profile-description"
               class="modal__input modal__input-profile-description"
@@ -122,17 +125,17 @@
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form modal__form-create" novalidate>
           <fieldset class="modal__form-fieldset">
-              <input
-                id="card-title"
-                class="modal__input modal__input-card-title"
-                type="text"
-                name="title"
-                placeholder="Title"
-                minlength="1"
-                maxlength="30"
-                required
-              />
-              <span class="modal__input-error card-title-error"></span>
+            <input
+              id="card-title"
+              class="modal__input modal__input-card-title"
+              type="text"
+              name="title"
+              placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__input-error card-title-error"></span>
             <input
               id="card-url"
               class="modal__input modal__input-card-url"
@@ -162,6 +165,6 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
+    <script type="module" src="../src/pages/index.js"></script>
   </body>
 </html>
