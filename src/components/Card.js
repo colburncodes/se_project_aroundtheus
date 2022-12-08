@@ -1,6 +1,3 @@
-import { openModal } from "../utils/utils.js";
-import { imageModal } from "../utils/constants.js";
-
 class Card {
   constructor(data, cardSelector) {
     this._data = data;
@@ -26,16 +23,16 @@ class Card {
     this._element = null;
   }
 
-  _handlePreviewImage(data) {
-    const cardImage = imageModal.querySelector(".modal__preview-image");
-    const cardDescription = imageModal.querySelector(".modal__caption");
+  // _handlePreviewImage(data) {
+  //   const cardImage = imageModal.querySelector(".modal__preview-image");
+  //   const cardDescription = imageModal.querySelector(".modal__caption");
 
-    cardImage.src = data.link;
-    cardImage.alt = data.name;
-    cardDescription.textContent = data.name;
+  //   cardImage.src = data.link;
+  //   cardImage.alt = data.name;
+  //   cardDescription.textContent = data.name;
 
-    openModal(imageModal);
-  }
+  //   //openModal(imageModal);
+  // }
 
   _setEventListeners() {
     this._element
@@ -46,9 +43,9 @@ class Card {
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeIcon());
 
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage(this._data));
+    // this._element
+    //   .querySelector(".card__image")
+    //   .addEventListener("click", () => this._handlePreviewImage(this._data));
   }
 
   generateCard() {

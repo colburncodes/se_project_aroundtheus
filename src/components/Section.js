@@ -6,7 +6,7 @@ class Section {
   }
 
   renderItems(items) {
-    items.map((item) => {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }

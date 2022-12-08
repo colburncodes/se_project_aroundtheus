@@ -3,6 +3,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage";
 import UserInfo from "../components/UserInfo.js";
 import {
   editFormValidator,
@@ -18,14 +19,11 @@ import {
   cardTitleValue,
   cardImageValue,
   editProfileModal,
-  modalSelector,
   openProfileEditButton,
+  imageModal,
 } from "../utils/constants.js";
 
-const modalPopup = new Popup(modalSelector);
-modalPopup.setEventListeners();
-
-var userInfo = new UserInfo(
+const userInfo = new UserInfo(
   selectors.profileTitle,
   selectors.profileDescription
 );
@@ -61,9 +59,9 @@ const sectionList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = createCard(item);
-
-      sectionList.addItem(card);
+      renderCard(item);
+      const popupImage = new PopupWithImage(imageModal);
+      popupImage.open({ name: item.name, link: item.link });
     },
   },
   selectors.cardsSection
