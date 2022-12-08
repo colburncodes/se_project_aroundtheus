@@ -71,3 +71,4 @@ export const profileDescriptionInput = editProfileModal.querySelector(
 
 export const imageModal = document.querySelector("#image-modal");
 export const modalSelector = document.querySelector(".modal");
+export const modalOpen = modalSelector.querySelector(".modal__open");
