@@ -1,9 +1,9 @@
+// stylesheet
 import "./index.css";
+
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage";
 import UserInfo from "../components/UserInfo.js";
 import {
   editFormValidator,
@@ -13,14 +13,11 @@ import {
 import {
   initialCards,
   selectors,
-  createCardModal,
   createModalForm,
-  openCreateCardButton,
-  cardTitleValue,
-  cardImageValue,
-  editProfileModal,
-  openProfileEditButton,
-  imageModal,
+  addCardButton,
+  editUserButton,
+  profileInputName,
+  profileInputDescription,
 } from "../utils/constants.js";
 
 const userInfo = new UserInfo(
@@ -28,65 +25,59 @@ const userInfo = new UserInfo(
   selectors.profileDescription
 );
 
-const createCardPopup = new Popup(createCardModal);
-createCardPopup.setEventListeners();
-openCreateCardButton.addEventListener("click", () => {
-  createCardPopup.openModal(createCardModal);
-});
-
-const profileModalPopup = new Popup(editProfileModal);
-profileModalPopup.setEventListeners();
-openProfileEditButton.addEventListener("click", () => {
-  userInfo.getUserInfo();
-  profileModalPopup.openModal(editProfileModal);
-});
-
-const userInfoPopup = new PopupWithForm({
-  popupSelector: editProfileModal,
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-    profileModalPopup.closeModal(editProfileModal);
-  },
-});
-userInfoPopup.setEventListeners();
-
 const createCard = (card) => {
   const newCard = new Card(card, "#card-template");
   return newCard.generateCard();
 };
-
-const sectionList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      renderCard(item);
-      const popupImage = new PopupWithImage(imageModal);
-      popupImage.open({ name: item.name, link: item.link });
-    },
-  },
-  selectors.cardsSection
-);
 
 const renderCard = (card) => {
   const cardElement = createCard(card);
   sectionList.addItem(cardElement);
 };
 
-const cardInfoPopup = new PopupWithForm({
-  popupSelector: createCardModal,
-  handleFormSubmit: () => {
-    const title = cardTitleValue.value;
-    const url = cardImageValue.value;
-    const data = {
-      name: title,
-      link: url,
-    };
-    renderCard(data);
-    createModalForm.reset();
-    createCardPopup.closeModal(createCardModal);
+const editFormModal = new PopupWithForm({
+  popupSelector: selectors.editModal,
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+    editFormModal.closeModal();
   },
 });
-cardInfoPopup.setEventListeners();
+
+const addFormModal = new PopupWithForm({
+  popupSelector: selectors.addModal,
+  handleFormSubmit: (data) => {
+    // const title = cardTitleValue.value;
+    // const url = cardImageValue.value;
+    // const data = {
+    //   name: title,
+    //   link: url,
+    // };
+    renderCard(data);
+    createModalForm.reset();
+    addFormModal.closeModal();
+  },
+});
+
+const sectionList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      renderCard(item);
+    },
+  },
+  selectors.cardsSection
+);
+
+addCardButton.addEventListener("click", () => {
+  addFormModal.openModal();
+});
+
+editUserButton.addEventListener("click", () => {
+  const { name, role } = userInfo.getUserInfo();
+  profileInputName.value = name;
+  profileInputDescription.value = role;
+  editFormModal.openModal();
+});
 
 sectionList.renderItems(initialCards);
 // validation activation

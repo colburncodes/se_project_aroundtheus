@@ -51,11 +51,12 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    const imageElement = this._element.querySelector(".card__image");
+    const imageElementText = this._element.querySelector(".card__label-text");
 
-    this._element.querySelector(".card__image").src = this._data.link;
-    this._element.querySelector(".card__image").alt = this._data.name;
-    this._element.querySelector(".card__label-text").textContent =
-      this._data.name;
+    imageElement.src = this._data.link;
+    imageElement.alt = this._data.name;
+    imageElementText.textContent = this._data.name;
 
     return this._element;
   }

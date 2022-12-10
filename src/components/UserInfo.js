@@ -1,29 +1,19 @@
-import {
-  profileDescription,
-  profileDescriptionInput,
-  profileTitle,
-  profileTitleInput,
-} from "../utils/constants.js";
-
 class UserInfo {
-  constructor(name, description) {
-    this._name = name;
-    this._description = description;
+  constructor(nameSelector, descriptionSelector) {
+    this._nameElement = document.querySelector(nameSelector);
+    this._descriptionSelector = document.querySelector(descriptionSelector);
   }
 
   getUserInfo() {
-    profileTitleInput.value = profileTitle.textContent;
-    profileDescriptionInput.value = profileDescription.textContent;
+    return {
+      name: this._nameElement.textContent,
+      role: this._descriptionSelector.textContent,
+    };
   }
 
-  setUserInfo(data) {
-    const profile = {
-      title: data.name,
-      description: data.description,
-    };
-
-    profileTitle.textContent = profile.title;
-    profileDescription.textContent = profile.description;
+  setUserInfo({ name, role }) {
+    this._nameElement.textContent = name;
+    this._descriptionSelector.textContent = role;
   }
 }
 
