@@ -80,6 +80,9 @@ const sectionListItems = new Section(
   selectors.cardsSection
 );
 
+editFormModal.setEventListeners();
+addFormModal.setEventListeners();
+
 sectionListItems.renderItems();
 // validation activation
 editFormValidator.enableValidation();

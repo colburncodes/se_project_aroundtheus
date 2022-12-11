@@ -9,11 +9,18 @@ class Popup {
   openModal = () => {
     this._popupElement.classList.add("modal__open");
     document.addEventListener("keyup", this._handleEscapePopup);
+    this._closeButtonElement.addEventListener("click", this._handleCloseButton);
   };
 
   closeModal = () => {
     this._popupElement.classList.remove("modal__open");
     document.removeEventListener("keyup", this._handleEscapePopup);
+    document.removeEventListener("click", this._handleCloseButton);
+  };
+
+  _handleCloseButton = () => {
+    this._popupElement.classList.remove("modal__close");
+    this.closeModal();
   };
 
   _handleEscapePopup = (evt) => {
