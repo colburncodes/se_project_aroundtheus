@@ -1,6 +1,8 @@
 class Card {
   constructor(data, cardSelector) {
     this._data = data;
+    this._link = data.link;
+    this._name = data.name;
     this._cardSelector = cardSelector;
   }
 
@@ -54,9 +56,9 @@ class Card {
     const imageElement = this._element.querySelector(".card__image");
     const imageElementText = this._element.querySelector(".card__label-text");
 
-    imageElement.src = this._data.link;
-    imageElement.alt = this._data.name;
-    imageElementText.textContent = this._data.name;
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
+    imageElementText.textContent = this._name;
 
     return this._element;
   }

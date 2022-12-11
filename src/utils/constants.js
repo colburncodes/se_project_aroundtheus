@@ -25,6 +25,16 @@ export const initialCards = [
   },
 ];
 
+// validation activation
+export const defaultFormConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSeletor: ".modal__save-button",
+  inactiveButtonClass: "modal__button-disabled",
+  inputErrorClass: "modal__input-error",
+  errorClass: "modal__error_visible",
+};
+
 export const selectors = {
   cardsSection: ".cards__list",
   cardTemplate: "#card-template",
@@ -37,35 +47,15 @@ export const selectors = {
   profileDescription: ".profile__description",
 };
 
-/** Create Card Modal */
-export const cardsList = document.querySelector(".cards__list");
-export const createCardModal = document.querySelector("#modal__create");
 export const createModalForm = document.querySelector(".modal__form-create");
 export const addCardButton = document.querySelector(".profile__add-button");
-export const cardTitleValue = createCardModal.querySelector(
-  ".modal__input-card-title"
-);
-export const cardImageValue = createCardModal.querySelector(
-  ".modal__input-card-url"
-);
-export const cardTemplateSelector = document.getElementById("#card-template");
-export const cardImage = document.querySelector(".card__image");
 
-/** Profile Edit Modal */
-export const editProfileModal = document.querySelector("#modal__edit");
-export const profileModalForm = document.querySelector(".modal__form-edit");
 export const editUserButton = document.querySelector(".profile__edit-button");
-export const profileName = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
-export const profileInputName = editProfileModal.querySelector(
+export const profileInputName = document.querySelector(
   ".modal__input-profile-name"
 );
-export const profileInputDescription = editProfileModal.querySelector(
+export const profileInputDescription = document.querySelector(
   ".modal__input-profile-description"
 );
 
-export const imageModal = document.querySelector("#image-modal");
-export const modalSelector = document.querySelector(".modal");
-export const modalOpen = modalSelector.querySelector(".modal__open");
+
