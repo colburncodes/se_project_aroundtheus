@@ -1,9 +1,8 @@
-import { openModal } from "../utils/utils.js";
-import { imageModal } from "../utils/constants.js";
-
 class Card {
   constructor(data, cardSelector) {
     this._data = data;
+    this._link = data.link;
+    this._name = data.name;
     this._cardSelector = cardSelector;
   }
 
@@ -26,16 +25,16 @@ class Card {
     this._element = null;
   }
 
-  _handlePreviewImage(data) {
-    const cardImage = imageModal.querySelector(".modal__preview-image");
-    const cardDescription = imageModal.querySelector(".modal__caption");
+  // _handlePreviewImage(data) {
+  //   const cardImage = imageModal.querySelector(".modal__preview-image");
+  //   const cardDescription = imageModal.querySelector(".modal__caption");
 
-    cardImage.src = data.link;
-    cardImage.alt = data.name;
-    cardDescription.textContent = data.name;
+  //   cardImage.src = data.link;
+  //   cardImage.alt = data.name;
+  //   cardDescription.textContent = data.name;
 
-    openModal(imageModal);
-  }
+  //   //openModal(imageModal);
+  // }
 
   _setEventListeners() {
     this._element
@@ -46,19 +45,20 @@ class Card {
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeIcon());
 
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage(this._data));
+    // this._element
+    //   .querySelector(".card__image")
+    //   .addEventListener("click", () => this._handlePreviewImage(this._data));
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    const imageElement = this._element.querySelector(".card__image");
+    const imageElementText = this._element.querySelector(".card__label-text");
 
-    this._element.querySelector(".card__image").src = this._data.link;
-    this._element.querySelector(".card__image").alt = this._data.name;
-    this._element.querySelector(".card__label-text").textContent =
-      this._data.name;
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
+    imageElementText.textContent = this._name;
 
     return this._element;
   }

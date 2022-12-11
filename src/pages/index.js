@@ -1,96 +1,89 @@
 import "./index.css";
+
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import {
-  editFormValidator,
-  createFormValidator,
-} from "../components/FormValidator.js";
 
 import {
   initialCards,
   selectors,
-  createCardModal,
   createModalForm,
-  openCreateCardButton,
-  cardTitleValue,
-  cardImageValue,
-  editProfileModal,
-  modalSelector,
-  openProfileEditButton,
+  addCardButton,
+  editUserButton,
+  profileInputName,
+  profileInputDescription,
+  defaultFormConfig,
 } from "../utils/constants.js";
 
-const modalPopup = new Popup(modalSelector);
-modalPopup.setEventListeners();
+const editProfileModal = document.querySelector("#modal__edit");
+const addCardModal = document.querySelector("#modal__create");
 
-var userInfo = new UserInfo(
+const userInfo = new UserInfo(
   selectors.profileTitle,
   selectors.profileDescription
 );
 
-const createCardPopup = new Popup(createCardModal);
-createCardPopup.setEventListeners();
-openCreateCardButton.addEventListener("click", () => {
-  createCardPopup.openModal(createCardModal);
-});
-
-const profileModalPopup = new Popup(editProfileModal);
-profileModalPopup.setEventListeners();
-openProfileEditButton.addEventListener("click", () => {
-  userInfo.getUserInfo();
-  profileModalPopup.openModal(editProfileModal);
-});
-
-const userInfoPopup = new PopupWithForm({
-  popupSelector: editProfileModal,
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-    profileModalPopup.closeModal(editProfileModal);
-  },
-});
-userInfoPopup.setEventListeners();
-
 const createCard = (card) => {
-  const newCard = new Card(card, "#card-template");
-  return newCard.generateCard();
+  const cardElement = new Card(card, "#card-template");
+  return cardElement.generateCard();
 };
 
-const sectionList = new Section(
+const renderCard = (card) => {
+  const cardElement = createCard(card);
+  sectionListItems.addItem(cardElement);
+};
+
+const editFormValidator = new FormValidator(
+  editProfileModal,
+  defaultFormConfig
+);
+
+const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
+
+addCardButton.addEventListener("click", () => {
+  addFormModal.openModal();
+});
+
+const addFormModal = new PopupWithForm({
+  popupSelector: selectors.addModal,
+  handleFormSubmit: (data) => {
+    renderCard(data);
+    createModalForm.reset();
+    addFormModal.closeModal();
+  },
+});
+
+editUserButton.addEventListener("click", () => {
+  const { name, role } = userInfo.getUserInfo();
+  profileInputName.value = name;
+  profileInputDescription.value = role;
+  editFormModal.openModal();
+});
+
+const editFormModal = new PopupWithForm({
+  popupSelector: selectors.editModal,
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+    editFormModal.closeModal();
+  },
+});
+
+const sectionListItems = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = createCard(item);
-
-      sectionList.addItem(card);
+      renderCard(item);
     },
   },
   selectors.cardsSection
 );
 
-const renderCard = (card) => {
-  const cardElement = createCard(card);
-  sectionList.addItem(cardElement);
-};
+editFormModal.setEventListeners();
+addFormModal.setEventListeners();
 
-const cardInfoPopup = new PopupWithForm({
-  popupSelector: createCardModal,
-  handleFormSubmit: () => {
-    const title = cardTitleValue.value;
-    const url = cardImageValue.value;
-    const data = {
-      name: title,
-      link: url,
-    };
-    renderCard(data);
-    createModalForm.reset();
-    createCardPopup.closeModal(createCardModal);
-  },
-});
-cardInfoPopup.setEventListeners();
-
-sectionList.renderItems(initialCards);
+sectionListItems.renderItems();
 // validation activation
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();

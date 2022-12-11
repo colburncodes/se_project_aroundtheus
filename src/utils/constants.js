@@ -1,4 +1,3 @@
-export const ESC_KEY_VALUE = "Escape";
 export const initialCards = [
   {
     name: "Venice Beach",
@@ -26,49 +25,37 @@ export const initialCards = [
   },
 ];
 
+// validation activation
+export const defaultFormConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSeletor: ".modal__save-button",
+  inactiveButtonClass: "modal__button-disabled",
+  inputErrorClass: "modal__input-error",
+  errorClass: "modal__error_visible",
+};
+
 export const selectors = {
-  createCardModal: "#modal__create",
   cardsSection: ".cards__list",
   cardTemplate: "#card-template",
+  addModal: "#modal__create",
+  editModal: "#modal__edit",
+  cardModalForm: ".modal__form-create",
   profileModalForm: ".modal__form-edit",
   modalSelector: ".modal",
   profileTitle: ".profile__title",
   profileDescription: ".profile__description",
-  createCardModal: "#modal__create",
 };
 
-/** Create Card Modal */
-export const cardsList = document.querySelector(".cards__list");
-export const createCardModal = document.querySelector("#modal__create");
 export const createModalForm = document.querySelector(".modal__form-create");
-export const openCreateCardButton = document.querySelector(
-  ".profile__add-button"
-);
-export const cardTitleValue = createCardModal.querySelector(
-  ".modal__input-card-title"
-);
-export const cardImageValue = createCardModal.querySelector(
-  ".modal__input-card-url"
-);
-export const cardTemplateSelector = document.getElementById("#card-template");
+export const addCardButton = document.querySelector(".profile__add-button");
 
-/** Profile Edit Modal */
-export const editProfileModal = document.querySelector("#modal__edit");
-export const profileModalForm = document.querySelector(".modal__form-edit");
-export const openProfileEditButton = document.querySelector(
-  ".profile__edit-button"
-);
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
-export const profileTitleInput = editProfileModal.querySelector(
+export const editUserButton = document.querySelector(".profile__edit-button");
+export const profileInputName = document.querySelector(
   ".modal__input-profile-name"
 );
-export const profileDescriptionInput = editProfileModal.querySelector(
+export const profileInputDescription = document.querySelector(
   ".modal__input-profile-description"
 );
 
-export const imageModal = document.querySelector("#image-modal");
-export const modalSelector = document.querySelector(".modal");
-export const modalOpen = modalSelector.querySelector(".modal__open");
+

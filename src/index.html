@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The US</title>
-    <!-- <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="icon" href="./images/favicon.ico" /> -->
   </head>
   <body class="page">
     <div class="page__content">
@@ -80,7 +78,6 @@
         <h3 class="modal__title">Edit profile</h3>
         <form
           class="modal__form modal__form-edit"
-          id="modalEditForm"
           novalidate
         >
           <fieldset class="modal__form-fieldset">
@@ -129,7 +126,7 @@
               id="card-title"
               class="modal__input modal__input-card-title"
               type="text"
-              name="title"
+              name="name"
               placeholder="Title"
               minlength="1"
               maxlength="30"
@@ -140,7 +137,7 @@
               id="card-url"
               class="modal__input modal__input-card-url"
               type="url"
-              name="url"
+              name="link"
               placeholder="Image Url"
               pattern="https://.*"
               required
@@ -165,6 +162,5 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <!-- <script type="module" src="../src/pages/index.js"></script> -->
   </body>
 </html>
