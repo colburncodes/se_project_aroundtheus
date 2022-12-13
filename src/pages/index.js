@@ -4,6 +4,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
 import {
@@ -17,7 +18,7 @@ import {
   defaultFormConfig,
 } from "../utils/constants.js";
 
-const editProfileModal = document.querySelector("#modal__edit");
+const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
 
 const userInfo = new UserInfo(
@@ -25,8 +26,16 @@ const userInfo = new UserInfo(
   selectors.profileDescription
 );
 
-const createCard = (card) => {
-  const cardElement = new Card(card, "#card-template");
+const createCard = (data) => {
+  const cardElement = new Card(
+    {
+      data,
+      handleImageClick: () => {
+        // handle image click
+      },
+    },
+    "#card-template"
+  );
   return cardElement.generateCard();
 };
 
@@ -35,11 +44,7 @@ const renderCard = (card) => {
   sectionListItems.addItem(cardElement);
 };
 
-const editFormValidator = new FormValidator(
-  editProfileModal,
-  defaultFormConfig
-);
-
+const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
 
 addCardButton.addEventListener("click", () => {
@@ -73,8 +78,8 @@ const editFormModal = new PopupWithForm({
 const sectionListItems = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      renderCard(item);
+    renderer: (data) => {
+      renderCard(data);
     },
   },
   selectors.cardsSection
@@ -82,8 +87,8 @@ const sectionListItems = new Section(
 
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
+//imagePopup.setEventListeners();
 
 sectionListItems.renderItems();
-// validation activation
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();

@@ -2,11 +2,11 @@ import Popup from "./Popup.js";
 
 class PopWithImage extends Popup {
   open({ name, link }) {
-    const imageModal = this._popupElement;
+    this._imageElement = this._popupElement;
     super.setEventListeners();
 
-    const cardImage = imageModal.querySelector(".modal__preview-image");
-    const cardDescription = imageModal.querySelector(".modal__caption");
+    const cardImage = this._imageElement.querySelector(".modal__preview-image");
+    const cardDescription = this._imageElement.querySelector(".modal__caption");
 
     cardImage.src = link;
     cardImage.alt = name;
