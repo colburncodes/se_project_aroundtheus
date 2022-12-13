@@ -40,6 +40,7 @@ export const selectors = {
   cardTemplate: "#card-template",
   addModal: "#modal__create",
   editModal: "#modal__edit",
+  imageModal: "#modal-image",
   cardModalForm: ".modal__form-create",
   profileModalForm: ".modal__form-edit",
   modalSelector: ".modal",
