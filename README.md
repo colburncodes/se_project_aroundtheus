@@ -25,6 +25,7 @@ Good luck and have fun!
 * CSS
 * BEM
 * JavaScript
+* Webpack
 
 Later it will become a full blown MERN stack app with oAuth.
 
