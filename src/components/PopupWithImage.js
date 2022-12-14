@@ -1,8 +1,9 @@
+import { openModal } from "../utils/utils.js";
 import Popup from "./Popup.js";
 
 class PopWithImage extends Popup {
   open({ name, link }) {
-    this._imageElement = this._popupElement;
+    this._imageElement = document.querySelector("#image-modal");
     super.setEventListeners();
 
     const cardImage = this._imageElement.querySelector(".modal__preview-image");
@@ -11,6 +12,9 @@ class PopWithImage extends Popup {
     cardImage.src = link;
     cardImage.alt = name;
     cardDescription.textContent = name;
+
+    openModal(this._imageElement);
+    // super.openModal();
   }
 }
 
