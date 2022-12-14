@@ -1,9 +1,10 @@
 class Card {
-  constructor({ data }, cardSelector) {
+  constructor({ data, handleImageClick }, cardSelector) {
     this._data = data;
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -25,17 +26,6 @@ class Card {
     this._element = null;
   }
 
-  // _handlePreviewImage(data) {
-  //   const cardImage = imageModal.querySelector(".modal__preview-image");
-  //   const cardDescription = imageModal.querySelector(".modal__caption");
-
-  //   cardImage.src = data.link;
-  //   cardImage.alt = data.name;
-  //   cardDescription.textContent = data.name;
-
-  //   //openModal(imageModal);
-  // }
-
   _setEventListeners() {
     this._element
       .querySelector(".card__delete-button")
@@ -45,9 +35,12 @@ class Card {
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeIcon());
 
-    // this._element
-    //   .querySelector(".card__image")
-    //   .addEventListener("click", () => this._handlePreviewImage(this._data));
+    this._element.querySelector(".card__image").addEventListener("click", () =>
+      this._handleImageClick({
+        name: this._name,
+        src: this._link,
+      })
+    );
   }
 
   generateCard() {

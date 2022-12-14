@@ -21,28 +21,12 @@ import {
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
 
+const imagePopup = new PopupWithImage("#image-modal");
+
 const userInfo = new UserInfo(
   selectors.profileTitle,
   selectors.profileDescription
 );
-
-const createCard = (data) => {
-  const cardElement = new Card(
-    {
-      data,
-      handleImageClick: () => {
-        // handle image click
-      },
-    },
-    "#card-template"
-  );
-  return cardElement.generateCard();
-};
-
-const renderCard = (card) => {
-  const cardElement = createCard(card);
-  sectionListItems.addItem(cardElement);
-};
 
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
@@ -79,7 +63,18 @@ const sectionListItems = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      renderCard(data);
+      // renderCard(data);
+      const cardElement = new Card(
+        {
+          data,
+          handleImageClick: () => {
+            // handle image click
+            imagePopup.open(data);
+          },
+        },
+        "#card-template"
+      );
+      sectionListItems.addItem(cardElement.generateCard());
     },
   },
   selectors.cardsSection
@@ -87,7 +82,7 @@ const sectionListItems = new Section(
 
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
-//imagePopup.setEventListeners();
+imagePopup.setEventListeners();
 
 sectionListItems.renderItems();
 editFormValidator.enableValidation();
