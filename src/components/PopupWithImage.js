@@ -1,4 +1,3 @@
-import { openModal } from "../utils/utils.js";
 import Popup from "./Popup.js";
 
 class PopWithImage extends Popup {
@@ -12,9 +11,7 @@ class PopWithImage extends Popup {
     cardImage.src = link;
     cardImage.alt = name;
     cardDescription.textContent = name;
-
-    openModal(this._imageElement);
-    // super.openModal();
+    super.openModal();
   }
 }
 
