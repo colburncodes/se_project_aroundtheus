@@ -11,7 +11,6 @@ class Popup {
   closeModal() {
     this._popupElement.classList.remove("modal__open");
     document.removeEventListener("keyup", this._handleEscapePopup);
-    document.removeEventListener("click", this._handleCloseButton);
   }
 
   _handleCloseButton = () => {

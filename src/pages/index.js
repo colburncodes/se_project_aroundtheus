@@ -74,18 +74,7 @@ const editFormModal = new PopupWithForm({
 const sectionListItems = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      const cardElement = new Card(
-        {
-          data,
-          handleImageClick: () => {
-            imagePopup.open(data);
-          },
-        },
-        "#card-template"
-      );
-      sectionListItems.addItem(cardElement.generateCard());
-    },
+    renderer: renderCard,
   },
   selectors.cardsSection
 );
