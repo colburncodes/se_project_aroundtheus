@@ -11,9 +11,9 @@ class UserInfo {
     };
   }
 
-  setUserInfo({ name, description }) {
+  setUserInfo({ name, about }) {
     this._nameElement.textContent = name;
-    this._descriptionElement.textContent = description;
+    this._descriptionElement.textContent = about;
   }
 }
 

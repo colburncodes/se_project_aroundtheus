@@ -1,9 +1,10 @@
 import "./index.css";
 
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
@@ -16,7 +17,14 @@ import {
   profileInputName,
   profileInputDescription,
   defaultFormConfig,
+  BASE_URL,
+  AUTH_TOKEN,
 } from "../utils/constants.js";
+
+const api = new Api({
+  baseUrl: BASE_URL,
+  authToken: AUTH_TOKEN,
+});
 
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
@@ -26,6 +34,18 @@ const userInfo = new UserInfo(
   selectors.profileTitle,
   selectors.profileDescription
 );
+
+api
+  .getUserInfo()
+  .then((user) => {
+    userInfo.setUserInfo({
+      name: user.name,
+      about: user.about,
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
@@ -66,7 +86,12 @@ editUserButton.addEventListener("click", () => {
 const editFormModal = new PopupWithForm({
   popupSelector: selectors.editModal,
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    api.updateUserProfile(data).then((data) => {
+      userInfo.setUserInfo({
+        name: data.name,
+        about: data.about,
+      });
+    });
     editFormModal.closeModal();
   },
 });
