@@ -9,7 +9,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
 import {
-  initialCards,
   selectors,
   createModalForm,
   addCardButton,
@@ -44,24 +43,18 @@ api
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });
+
+// api
+//   .deleteCardById("639f22525dd2101f146e4d1b")
+//   .then((card) => console.log(card))
+//   .catch((err) => {
+//     console.error(err);
+//   });
 
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
-
-const renderCard = (data) => {
-  const card = new Card(
-    {
-      data,
-      handleImageClick: () => {
-        imagePopup.open(data);
-      },
-    },
-    "#card-template"
-  );
-  sectionListItems.addItem(card.generateCard());
-};
 
 addCardButton.addEventListener("click", () => {
   addFormModal.openModal();
@@ -70,7 +63,12 @@ addCardButton.addEventListener("click", () => {
 const addFormModal = new PopupWithForm({
   popupSelector: selectors.addModal,
   handleFormSubmit: (data) => {
-    renderCard(data);
+    api
+      .addCard(data)
+      .then((data) => data)
+      .catch((err) => {
+        console.error(err);
+      });
     createModalForm.reset();
     addFormModal.closeModal();
   },
@@ -86,28 +84,53 @@ editUserButton.addEventListener("click", () => {
 const editFormModal = new PopupWithForm({
   popupSelector: selectors.editModal,
   handleFormSubmit: (data) => {
-    api.updateUserProfile(data).then((data) => {
-      userInfo.setUserInfo({
-        name: data.name,
-        about: data.about,
+    api
+      .editUserInfo(data)
+      .then((data) => {
+        userInfo.setUserInfo({
+          name: data.name,
+          about: data.about,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    });
     editFormModal.closeModal();
   },
 });
 
-const sectionListItems = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  selectors.cardsSection
-);
+api
+  .getInitialCards()
+  .then((cards) => {
+    const sectionListItems = new Section(
+      {
+        items: cards,
+        renderer: () => {
+          cards.forEach((data) => {
+            const card = new Card(
+              {
+                data,
+                handleImageClick: () => {
+                  imagePopup.open(data);
+                },
+              },
+              "#card-template"
+            );
+            sectionListItems.addItem(card.generateCard());
+          });
+        },
+      },
+      selectors.cardsSection
+    );
+    sectionListItems.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
 imagePopup.setEventListeners();
 
-sectionListItems.renderItems();
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();

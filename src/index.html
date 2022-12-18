@@ -27,13 +27,13 @@
             alt="Avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               type="button"
               aria-label="edit"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             class="profile__add-button"
@@ -160,6 +160,20 @@
         <button type="button" class="modal__close"></button>
         <img class="modal__preview-image" alt="#" src="#" />
         <p class="modal__caption"></p>
+      </div>
+    </div>
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="delete-modal">
+      <div class="modal__container">
+        <h1 class="modal__title">Are you sure?</h1>
+        <button type="button" class="modal__close"></button>
+        <button
+        class="modal__save-button modal__button-disabled"
+        type="submit"
+        disabled
+      >
+        Yes
+      </button>
       </div>
     </div>
   </body>
