@@ -102,37 +102,42 @@ const editFormModal = new PopupWithForm({
 api
   .getInitialCards()
   .then((cards) => {
-    const sectionListItems = new Section(
+    console.log(cards);
+    const cardsList = new Section(
       {
         items: cards,
-        renderer: () => {
-          cards.forEach((data) => {
-            const card = new Card(
-              {
-                data,
-                handleImageClick: () => {
-                  imagePopup.open(data);
-                },
-                handleDeleteClick: () => {
-                  const cardId = card.getById();
-                  api
-                    .deleteCardById(cardId)
-                    .then(() => {
-                      card.handleDeleteCard();
-                      console.log(`Card was deleted successfully`);
-                    })
-                    .catch((err) => console.error(err));
-                },
+        renderer: (data) => {
+          const card = new Card(
+            {
+              data,
+              handleImageClick: () => {
+                imagePopup.open(data);
               },
-              "#card-template"
-            );
-            sectionListItems.addItem(card.generateCard());
-          });
+              handleDeleteClick: () => {
+                const cardId = card.getById();
+                api
+                  .deleteCardById(cardId)
+                  .then(() => {
+                    card.handleDeleteCard();
+                    console.log(`Card was deleted successfully`);
+                  })
+                  .catch((err) => console.error(err));
+              },
+              handleUserLikes: () => {
+                const cardId = card.getById();
+                api.addUserLikes(cardId).then(() => {
+                  card.handleLikeIcon();
+                });
+              },
+            },
+            "#card-template"
+          );
+          cardsList.addItem(card.generateCard());
         },
       },
       selectors.cardsSection
     );
-    sectionListItems.renderItems();
+    cardsList.renderItems();
   })
   .catch((err) => {
     console.error(err);

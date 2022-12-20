@@ -4,20 +4,28 @@ class Api {
     this._authToken = authToken;
   }
 
-  // GET: List of cards
-  getInitialCards = async () => {
-    let response = await fetch(`${this._baseUrl}/cards`, {
-      headers: { authorization: this._authToken },
-    });
-    let data = response.ok
+  _handleResponse(response) {
+    return response.ok
       ? response.json()
       : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+  }
+
+  _handleResponseError(err) {
+    console.log(`Error processing request ${err}`);
+  }
+
+  // GET: List of cards
+  getInitialCards = async () => {
+    return await fetch(`${this._baseUrl}/cards`, {
+      headers: { authorization: this._authToken },
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 
   // POST: Add new card
   addCard = async ({ name, link }) => {
-    let response = await fetch(`${this._baseUrl}/cards`, {
+    return await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: this._authToken,
@@ -27,17 +35,14 @@ class Api {
         name,
         link,
       }),
-    });
-
-    let data = response.ok
-      ? response.json()
-      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 
   // DELETE: Delete card
   deleteCardById = async (id) => {
-    let response = await fetch(`${this._baseUrl}/cards/${id}`, {
+    return await fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: {
         authorization: this._authToken,
@@ -46,28 +51,23 @@ class Api {
       body: JSON.stringify({
         id,
       }),
-    });
-
-    let data = response.ok
-      ? response.json()
-      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 
   // GET: Gets User Profile
   getUserInfo = async () => {
-    let response = await fetch(`${this._baseUrl}/users/me`, {
+    return await fetch(`${this._baseUrl}/users/me`, {
       headers: { authorization: this._authToken },
-    });
-    let data = response.ok
-      ? response.json()
-      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 
   // PATCH: Edit User Profile
   editUserInfo = async ({ name, about }) => {
-    let response = await fetch(`${this._baseUrl}/users/me`, {
+    return await fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
@@ -77,16 +77,14 @@ class Api {
         name,
         about,
       }),
-    });
-    let data = response.ok
-      ? response.json()
-      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 
   // PUT: Add User likes
   addUserLikes = async (id) => {
-    let response = await fetch(`${this._baseUrl}/cards/likes/${id}`, {
+    return await fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: "PUT",
       headers: {
         authorization: this._authToken,
@@ -95,12 +93,9 @@ class Api {
       body: JSON.stringify({
         id,
       }),
-    });
-
-    let data = response.ok
-      ? response.json()
-      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
-    return data;
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
   };
 }
 
