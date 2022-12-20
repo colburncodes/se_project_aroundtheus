@@ -115,7 +115,6 @@ api
                 },
                 handleDeleteClick: () => {
                   const cardId = card.getById();
-                  console.log(cardId);
                   api
                     .deleteCardById(cardId)
                     .then(() => {
