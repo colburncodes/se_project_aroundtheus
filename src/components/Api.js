@@ -83,6 +83,25 @@ class Api {
       : Promise.reject(`Error: ${response.status} ${response.statusText}`);
     return data;
   };
+
+  // PUT: Add User likes
+  addUserLikes = async (id) => {
+    let response = await fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+
+    let data = response.ok
+      ? response.json()
+      : Promise.reject(`Error: ${response.status} ${response.statusText}`);
+    return data;
+  };
 }
 
 export default Api;

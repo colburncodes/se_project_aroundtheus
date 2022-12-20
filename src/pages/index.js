@@ -47,8 +47,8 @@ api
   });
 
 // api
-//   .deleteCardById("639f22525dd2101f146e4d1b")
-//   .then((card) => console.log(card))
+//   .addUserLikes("639dc6ef60cf901eecd83d2f")
+//   .then((like) => console.log(like))
 //   .catch((err) => {
 //     console.error(err);
 //   });
@@ -112,6 +112,17 @@ api
                 data,
                 handleImageClick: () => {
                   imagePopup.open(data);
+                },
+                handleDeleteClick: () => {
+                  const cardId = card.getById();
+                  console.log(cardId);
+                  api
+                    .deleteCardById(cardId)
+                    .then(() => {
+                      card.handleDeleteCard();
+                      console.log(`Card was deleted successfully`);
+                    })
+                    .catch((err) => console.error(err));
                 },
               },
               "#card-template"
