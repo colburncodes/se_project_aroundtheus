@@ -14,6 +14,11 @@ class Api {
     console.log(`Error processing request ${err}`);
   }
 
+  // GET: Get App Data (cardsList, userData)
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
+
   // GET: List of cards
   getInitialCards = async () => {
     return await fetch(`${this._baseUrl}/cards`, {
@@ -82,16 +87,32 @@ class Api {
       .catch((err) => this._handleResponseError(err));
   };
 
-  // PUT: Add User likes
-  addUserLikes = async (id) => {
-    return await fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: "PUT",
+  // PATCH: Edit Profile Picture
+  setUserAvatar = async ({ avatar }) => {
+    return await fetch(`${this._baseUrl}/users/me/${avatar}`, {
+      method: "PATCH",
       headers: {
         authorization: this._authToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id,
+        avatar,
+      }),
+    })
+      .then(this._handleResponse)
+      .catch((err) => this._handleResponseError(err));
+  };
+
+  // PUT | DELETE: Add | Remove User likes
+  changeCardLikeStatus = async (cardId, like) => {
+    return await fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: like ? "PUT" : "DELETE",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        like,
       }),
     })
       .then(this._handleResponse)
