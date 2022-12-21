@@ -34,25 +34,6 @@ const userInfo = new UserInfo(
   selectors.profileDescription
 );
 
-api
-  .getUserInfo()
-  .then((user) => {
-    userInfo.setUserInfo({
-      name: user.name,
-      about: user.about,
-    });
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-// api
-//   .addUserLikes("639dc6ef60cf901eecd83d2f")
-//   .then((like) => console.log(like))
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
 
@@ -100,9 +81,15 @@ const editFormModal = new PopupWithForm({
 });
 
 api
-  .getInitialCards()
-  .then((cards) => {
-    console.log(cards);
+  .getAppInfo()
+  .then(([cards, user]) => {
+    const userId = user._id;
+
+    userInfo.setUserInfo({
+      name: user.name,
+      about: user.about,
+    });
+
     const cardsList = new Section(
       {
         items: cards,
