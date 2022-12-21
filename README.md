@@ -17,17 +17,18 @@ This project is made so all the elements are displayed correctly on popular scre
 **Images**  
   
 The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
 
 **Technologies**
-* HTML
-* CSS
-* BEM
+* HTML/CSS | BEM
 * JavaScript
 * Webpack
 
-Later it will become a full blown MERN stack app with oAuth.
+OOP Design Principles.
+
+Webpack Bundling/Configuration
+* Project is configured for both development and production.
+
+API implementation.
 
 ## Live Link 
 https://colburncodes.github.io/se_project_aroundtheus/
