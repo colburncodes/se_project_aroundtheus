@@ -80,17 +80,6 @@ const editFormModal = new PopupWithForm({
   },
 });
 
-// deleteIconButton.addEventListener("click", () => {
-//   console.log("Click Click");
-// });
-
-// const deleteModalForm = new PopupWithForm({
-//   popupSelector: selectors.deleteModal,
-//   handleFormSubmit: () => {
-//     console.log("We made it");
-//     deleteModalForm.closeModal();
-//   },
-// });
 let userId;
 api
   .getAppInfo()
