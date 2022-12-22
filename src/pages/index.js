@@ -80,10 +80,11 @@ const editFormModal = new PopupWithForm({
   },
 });
 
+let userId;
 api
   .getAppInfo()
   .then(([cards, user]) => {
-    const userId = user._id;
+    userId = user._id;
 
     userInfo.setUserInfo({
       name: user.name,
@@ -102,13 +103,19 @@ api
               },
               handleDeleteClick: () => {
                 const cardId = card.getById();
-                api
-                  .deleteCardById(cardId)
-                  .then(() => {
-                    card.handleDeleteCard();
-                    console.log(`Card was deleted successfully`);
-                  })
-                  .catch((err) => console.error(err));
+                const ownerId = data.owner._id;
+
+                if (userId === ownerId) {
+                  api
+                    .deleteCardById(cardId)
+                    .then(() => {
+                      card.handleDeleteCard();
+                      console.log(`Card was deleted successfully`);
+                    })
+                    .catch((err) => console.error(err));
+                } else {
+                  return;
+                }
               },
               handleUserLikes: () => {
                 const cardId = card.getById();

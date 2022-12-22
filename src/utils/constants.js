@@ -29,7 +29,7 @@ export const createModalForm = document.querySelector(".modal__form-create");
 export const addCardButton = document.querySelector(".profile__add-button");
 
 export const editUserButton = document.querySelector(".profile__edit-button");
-export const deleteIconButton = document.querySelector("card__delete-button");
+// export const deleteIconButton = document.querySelector(".card__delete-button");
 export const profileInputName = document.querySelector(
   ".modal__input-profile-name"
 );
