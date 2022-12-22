@@ -98,12 +98,13 @@ api
           const card = new Card(
             {
               data,
+              userId,
               handleImageClick: () => {
                 imagePopup.open(data);
               },
               handleDeleteClick: () => {
                 const cardId = card.getById();
-                const ownerId = data.owner._id;
+                const ownerId = card.getOwnerById();
 
                 if (userId === ownerId) {
                   api
@@ -117,7 +118,7 @@ api
                   return;
                 }
               },
-              handleUserLikes: () => {
+              handleUserLiskes: () => {
                 const cardId = card.getById();
                 api.addUserLikes(cardId).then(() => {
                   card.handleLikeIcon();
