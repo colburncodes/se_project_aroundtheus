@@ -16,7 +16,7 @@ class Api {
 
   // GET: Get App Data (cardsList, userData)
   getAppInfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
   // GET: List of cards

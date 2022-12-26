@@ -13,12 +13,14 @@ import {
   createModalForm,
   addCardButton,
   editUserButton,
+  deleteCardButton,
   profileInputName,
   profileInputDescription,
   defaultFormConfig,
   BASE_URL,
   AUTH_TOKEN,
 } from "../utils/constants.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 const api = new Api({
   baseUrl: BASE_URL,
@@ -27,6 +29,7 @@ const api = new Api({
 
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
+const deleteModal = document.querySelector("#delete-modal");
 const imagePopup = new PopupWithImage("#image-modal");
 
 const userInfo = new UserInfo(
@@ -80,10 +83,12 @@ const editFormModal = new PopupWithForm({
   },
 });
 
+const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
+
 let userId;
 api
   .getAppInfo()
-  .then(([cards, user]) => {
+  .then(([user, cards]) => {
     userId = user._id;
 
     userInfo.setUserInfo({
@@ -104,9 +109,7 @@ api
               },
               handleDeleteClick: () => {
                 const cardId = card.getById();
-                const ownerId = card.getOwnerById();
-
-                if (userId === ownerId) {
+                confirmationPopup.openModal(() => {
                   api
                     .deleteCardById(cardId)
                     .then(() => {
@@ -114,13 +117,12 @@ api
                       console.log(`Card was deleted successfully`);
                     })
                     .catch((err) => console.error(err));
-                } else {
-                  return;
-                }
+                });
               },
               handleUserLiskes: () => {
                 const cardId = card.getById();
-                api.addUserLikes(cardId).then(() => {
+                console.log(data.likes);
+                api.changeCardLikeStatus(cardId, like).then(() => {
                   card.handleLikeIcon();
                 });
               },
@@ -141,6 +143,7 @@ api
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
 imagePopup.setEventListeners();
+confirmationPopup.setEventListeners();
 
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();
