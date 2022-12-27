@@ -7,6 +7,7 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 import {
   selectors,
@@ -28,6 +29,7 @@ const api = new Api({
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
 const imagePopup = new PopupWithImage("#image-modal");
+const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
 
 const userInfo = new UserInfo(
   selectors.profileTitle,
@@ -83,7 +85,7 @@ const editFormModal = new PopupWithForm({
 let userId;
 api
   .getAppInfo()
-  .then(([cards, user]) => {
+  .then(([user, cards]) => {
     userId = user._id;
 
     userInfo.setUserInfo({
@@ -103,24 +105,23 @@ api
                 imagePopup.open(data);
               },
               handleDeleteClick: () => {
-                const cardId = card.getById();
-                const ownerId = card.getOwnerById();
-
-                if (userId === ownerId) {
+                const cardId = card.getCardById();
+                confirmationPopup.openModal(() => {
                   api
                     .deleteCardById(cardId)
                     .then(() => {
                       card.handleDeleteCard();
-                      console.log(`Card was deleted successfully`);
+                      confirmationPopup.closeModal();
+                      console.log(`Card was deleted successfully ${cardId}`);
                     })
                     .catch((err) => console.error(err));
-                } else {
-                  return;
-                }
+                });
               },
-              handleUserLiskes: () => {
-                const cardId = card.getById();
-                api.addUserLikes(cardId).then(() => {
+              handleUserLikes: () => {
+                const cardId = card.getCardById();
+                const like = card.getUserLikes();
+                api.changeCardLikeStatus(cardId, like).then((obj) => {
+                  console.log(obj);
                   card.handleLikeIcon();
                 });
               },
@@ -141,6 +142,7 @@ api
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
 imagePopup.setEventListeners();
+confirmationPopup.setEventListeners();
 
 editFormValidator.enableValidation();
 createFormValidator.enableValidation();

@@ -1,8 +1,11 @@
+import { data } from "autoprefixer";
+
 class Card {
   constructor(
     { data, userId, handleImageClick, handleDeleteClick, handleUserLikes },
     cardSelector
   ) {
+    this._data = data;
     this._id = data._id;
     this._ownerId = data.owner._id;
     this._userId = userId;
@@ -15,13 +18,12 @@ class Card {
     this._handleUserLikes = handleUserLikes;
   }
 
-  getById() {
-    return this._id;
-  }
-
-  getOwnerById() {
-    return this._ownerId;
-  }
+  getCardById = () => this._id;
+  getOwnerById = () => this._ownerId;
+  getUserLikes = () => {
+    // this._likes.length;
+    return this._likes.map((like) => like);
+  };
 
   _getTemplate() {
     const cardTemplate = document
@@ -32,10 +34,11 @@ class Card {
     return cardTemplate;
   }
 
-  handleLikeIcon = () =>
+  handleLikeIcon = () => {
     this._element
       .querySelector(".card__like-button")
       .classList.toggle("card__like-active");
+  };
 
   handleDeleteCard() {
     this._element.remove();

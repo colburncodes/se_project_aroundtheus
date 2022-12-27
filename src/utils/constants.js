@@ -35,3 +35,5 @@ export const profileInputName = document.querySelector(
 export const profileInputDescription = document.querySelector(
   ".modal__input-profile-description"
 );
+
+export const deleteCardButton = document.querySelector(".card__like-button");
