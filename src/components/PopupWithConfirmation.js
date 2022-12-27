@@ -10,7 +10,7 @@ class PopupWithConfirmation extends Popup {
   }
 
   handleConfirmation() {
-    // confirm submission
+    console.log("clicked confirmation");
   }
 
   openModal() {
@@ -19,12 +19,10 @@ class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this.removeEventListeners();
-    this._handleSubmit.addEventListener("click", () => this.handleConfirmation);
-  }
-
-  removeEventListeners() {
     this._handleSubmit.classList.remove("modal__button-disabled");
+     this._handleSubmit.addEventListener("click", () => {
+       this.handleConfirmation();
+     });
   }
 
   closeModal() {

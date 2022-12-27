@@ -7,20 +7,19 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 import {
   selectors,
   createModalForm,
   addCardButton,
   editUserButton,
-  deleteCardButton,
   profileInputName,
   profileInputDescription,
   defaultFormConfig,
   BASE_URL,
   AUTH_TOKEN,
 } from "../utils/constants.js";
-import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 const api = new Api({
   baseUrl: BASE_URL,
@@ -29,8 +28,8 @@ const api = new Api({
 
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
-const deleteModal = document.querySelector("#delete-modal");
 const imagePopup = new PopupWithImage("#image-modal");
+const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
 
 const userInfo = new UserInfo(
   selectors.profileTitle,
@@ -83,8 +82,6 @@ const editFormModal = new PopupWithForm({
   },
 });
 
-const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
-
 let userId;
 api
   .getAppInfo()
@@ -108,21 +105,23 @@ api
                 imagePopup.open(data);
               },
               handleDeleteClick: () => {
-                const cardId = card.getById();
+                const cardId = card.getCardById();
                 confirmationPopup.openModal(() => {
                   api
                     .deleteCardById(cardId)
                     .then(() => {
                       card.handleDeleteCard();
-                      console.log(`Card was deleted successfully`);
+                      confirmationPopup.closeModal();
+                      console.log(`Card was deleted successfully ${cardId}`);
                     })
                     .catch((err) => console.error(err));
                 });
               },
-              handleUserLiskes: () => {
-                const cardId = card.getById();
-                console.log(data.likes);
-                api.changeCardLikeStatus(cardId, like).then(() => {
+              handleUserLikes: () => {
+                const cardId = card.getCardById();
+                const like = card.getUserLikes();
+                api.changeCardLikeStatus(cardId, like).then((obj) => {
+                  console.log(obj);
                   card.handleLikeIcon();
                 });
               },
