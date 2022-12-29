@@ -106,16 +106,18 @@ api
               },
               handleDeleteClick: () => {
                 const cardId = card.getCardById();
-                confirmationPopup.openModal(() => {
+                confirmationPopup.openModal();
+                confirmationPopup.setSubmitAction(() => {
                   api
                     .deleteCardById(cardId)
                     .then(() => {
                       card.handleDeleteCard();
-                      confirmationPopup.closeModal();
                       console.log(`Card was deleted successfully ${cardId}`);
                     })
                     .catch((err) => console.error(err));
+                  confirmationPopup.closeModal();
                 });
+
               },
               handleUserLikes: () => {
                 const cardId = card.getCardById();
