@@ -59,9 +59,12 @@
                     type="button"
                     aria-label="heart"
                   >
-                    <img src="<%=require('./images/heart.svg')%>" alt="Heart Icon" />
+                    <img
+                      src="<%=require('./images/heart.svg')%>"
+                      alt="Heart Icon"
+                    />
                   </button>
-                  <p class="card__like-count">1</p>
+                  <p class="card__like-count"></p>
                 </div>
               </li>
             </template>
@@ -77,10 +80,7 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <h3 class="modal__title">Edit profile</h3>
-        <form
-          class="modal__form modal__form-edit"
-          novalidate
-        >
+        <form class="modal__form modal__form-edit" novalidate>
           <fieldset class="modal__form-fieldset">
             <input
               id="profile-name"
@@ -155,6 +155,25 @@
         </form>
       </div>
     </div>
+    <!-- Avatar Modal -->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__avatar-container">
+        <h1 class="modal__title">Change profile picture</h1>
+        <button type="button" class="modal__close"></button>
+        <input
+        id="card-url"
+        class="modal__input modal__input-avatar"
+        type="url"
+        name="link"
+        placeholder="Avatar Image"
+        pattern="https://.*"
+        required
+      />
+        <button class="modal__save-button modal__button-disabled" type="submit">
+          Save
+        </button>
+      </div>
+    </div>
     <!-- Image Modal -->
     <div class="modal" id="image-modal">
       <div class="modal__container modal__content-image">
@@ -168,12 +187,9 @@
       <div class="modal__delete-container">
         <h1 class="modal__title">Are you sure?</h1>
         <button type="button" class="modal__close"></button>
-        <button
-        class="modal__save-button modal__button-disabled"
-        type="submit"
-      >
-        Yes
-      </button>
+        <button class="modal__save-button modal__button-disabled" type="submit">
+          Yes
+        </button>
       </div>
     </div>
   </body>
