@@ -117,13 +117,12 @@ api
                     .catch((err) => console.error(err));
                   confirmationPopup.closeModal();
                 });
-
               },
               handleUserLikes: () => {
                 const cardId = card.getCardById();
-                const like = card.getUserLikes();
-                api.changeCardLikeStatus(cardId, like).then((obj) => {
-                  console.log(obj);
+                const likes = card.getUserLikesCount();
+
+                api.changeCardLikeStatus(cardId, likes).then(() => {
                   card.handleLikeIcon();
                 });
               },

@@ -76,4 +76,18 @@
   background: transparent url(../images/Union.svg) center no-repeat;
 }
 
-
+.card__like-count {
+  color: black;
+  width: 9px;
+  height: 13px;
+  margin-top: 3px;
+  left: -20px;
+  position: relative;
+  top: 19px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}

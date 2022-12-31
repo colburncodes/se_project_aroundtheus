@@ -20,10 +20,11 @@ class Card {
 
   getCardById = () => this._id;
   getOwnerById = () => this._ownerId;
-  getUserLikes = () => {
-    // this._likes.length;
-    return this._likes.map((like) => like);
-  };
+  getUserLikesCount() {
+    if (this._likes.length > 0) {
+      return this._likes.length;
+    }
+  }
 
   _getTemplate() {
     const cardTemplate = document
@@ -66,10 +67,12 @@ class Card {
     this._setEventListeners();
     const imageElement = this._element.querySelector(".card__image");
     const imageElementText = this._element.querySelector(".card__label-text");
+    const imageLikes = this._element.querySelector(".card__like-count");
 
     imageElement.src = this._link;
     imageElement.alt = this._name;
     imageElementText.textContent = this._name;
+    imageLikes.textContent = this.getUserLikesCount();
 
     if (this._userId == this._ownerId) {
       this.handleDeleteCard();
