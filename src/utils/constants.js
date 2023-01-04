@@ -16,18 +16,20 @@ export const selectors = {
   cardTemplate: "#card-template",
   addModal: "#modal__create",
   editModal: "#modal__edit",
+  avatarModal: "#avatar-modal",
   imageModal: "#modal-image",
   deleteModal: "#delete-modal",
   cardModalForm: ".modal__form-create",
   profileModalForm: ".modal__form-edit",
   modalSelector: ".modal",
+  profileImage: ".profile__image",
   profileTitle: ".profile__title",
   profileDescription: ".profile__description",
 };
 
 export const createModalForm = document.querySelector(".modal__form-create");
 export const addCardButton = document.querySelector(".profile__add-button");
-
+export const avatarIcon = document.querySelector(".profile__avatar-edit");
 export const editUserButton = document.querySelector(".profile__edit-button");
 export const profileInputName = document.querySelector(
   ".modal__input-profile-name"
