@@ -23,9 +23,10 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
+            src="#"
             alt="Avatar"
           />
+          <button class="profile__avatar-edit" type="button" aria-label="edit-avatar"></button>
           <div class="profile__info">
             <h1 class="profile__title"></h1>
             <button
@@ -161,7 +162,7 @@
         <h1 class="modal__title">Change profile picture</h1>
         <button type="button" class="modal__close"></button>
         <input
-        id="card-url"
+        id="avatar-url"
         class="modal__input modal__input-avatar"
         type="url"
         name="link"

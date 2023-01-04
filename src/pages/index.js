@@ -14,6 +14,7 @@ import {
   createModalForm,
   addCardButton,
   editUserButton,
+  avatarIcon,
   profileInputName,
   profileInputDescription,
   defaultFormConfig,
@@ -29,11 +30,13 @@ const api = new Api({
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
 const imagePopup = new PopupWithImage("#image-modal");
+
 const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
 
 const userInfo = new UserInfo(
   selectors.profileTitle,
-  selectors.profileDescription
+  selectors.profileDescription,
+  selectors.profileImage
 );
 
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
@@ -46,16 +49,48 @@ addCardButton.addEventListener("click", () => {
 const addFormModal = new PopupWithForm({
   popupSelector: selectors.addModal,
   handleFormSubmit: (data) => {
+    addFormModal.renderLoading(true);
     api
       .addCard(data)
-      .then((data) => data)
+      .then((data) => {
+        data;
+        addFormModal.closeModal();
+      })
       .catch((err) => {
         console.error(err);
       });
     createModalForm.reset();
-    addFormModal.closeModal();
   },
 });
+
+avatarIcon.addEventListener("click", () => {
+  //avatarFormModal.openModal();
+  // const avatarTemplate = document.querySelector(selectors.avatarModal);
+  // console.log(avatarTemplate);
+
+  let avatar =
+    "https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60";
+
+  const updateImage = api
+    .setUserAvatar({ avatar })
+    .then((avatar) => {
+      console.log("Image updated!", avatar);
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+  console.log(updateImage);
+});
+
+// const avatarFormModal = new PopupWithForm({
+//   popupSelector: selectors.avatarModal,
+//   handleFormSubmit: (data) => {
+//     api
+//       .setUserAvatar(data)
+//       .then((data) => console.log(data))
+//       .catch((err) => console.log(err));
+//   },
+// });
 
 editUserButton.addEventListener("click", () => {
   const { name, role } = userInfo.getUserInfo();
@@ -67,18 +102,20 @@ editUserButton.addEventListener("click", () => {
 const editFormModal = new PopupWithForm({
   popupSelector: selectors.editModal,
   handleFormSubmit: (data) => {
+    editFormModal.renderLoading(true);
     api
       .editUserInfo(data)
       .then((data) => {
         userInfo.setUserInfo({
           name: data.name,
           about: data.about,
+          avatar: data.avatar,
         });
+        editFormModal.closeModal();
       })
       .catch((err) => {
         console.error(err);
       });
-    editFormModal.closeModal();
   },
 });
 
@@ -91,6 +128,7 @@ api
     userInfo.setUserInfo({
       name: user.name,
       about: user.about,
+      avatar: user.avatar,
     });
 
     const cardsList = new Section(
@@ -108,20 +146,20 @@ api
                 const cardId = card.getCardById();
                 confirmationPopup.openModal();
                 confirmationPopup.setSubmitAction(() => {
+                  confirmationPopup.renderLoading(true);
                   api
                     .deleteCardById(cardId)
                     .then(() => {
                       card.handleDeleteCard();
                       console.log(`Card was deleted successfully ${cardId}`);
+                      confirmationPopup.closeModal();
                     })
                     .catch((err) => console.error(err));
-                  confirmationPopup.closeModal();
                 });
               },
               handleUserLikes: () => {
                 const cardId = card.getCardById();
                 const likes = card.getUserLikesCount();
-
                 api.changeCardLikeStatus(cardId, likes).then(() => {
                   card.handleLikeIcon();
                 });
@@ -143,6 +181,7 @@ api
 editFormModal.setEventListeners();
 addFormModal.setEventListeners();
 imagePopup.setEventListeners();
+//avatarFormModal.setEventListeners();
 confirmationPopup.setEventListeners();
 
 editFormValidator.enableValidation();

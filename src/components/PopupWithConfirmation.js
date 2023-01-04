@@ -13,6 +13,14 @@ class PopupWithConfirmation extends Popup {
     super.openModal();
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._handleSubmit.textContent = "Deleting...";
+    } else {
+      this._handleSubmit.textContent = "Yes";
+    }
+  }
+
   setSubmitAction(handleSubmit) {
     this._handleSubmit.addEventListener("click", handleSubmit);
   }

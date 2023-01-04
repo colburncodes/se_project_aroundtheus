@@ -17,12 +17,19 @@ class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._buttonElement.textContent = "Saving...";
+    } else {
+      this._buttonElement.textContent = "Save";
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this._buttonElement.textContent = "Saving...";
     });
   }
 

@@ -77,12 +77,30 @@
   object-fit: cover;
   background-position: center;
   margin: 0 29px 0 0;
-  /* background: url(../images/edit-icon.svg) center no-repeat; */
 }
 
-.profile__image:hover {
+.profile__avatar-edit {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  background-image: url("../images//edit-icon.svg");
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.825);
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+}
+
+.profile__avatar-edit:hover {
   opacity: 0.6;
-} 
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 740px) {
   .profile__info {
@@ -134,6 +152,10 @@
     margin-bottom: 26.25px;
     margin-right: 0;
     margin-top: 38.25px;
+  }
+
+  .profile__avatar-edit {
+    top: 127px;
   }
   .profile__title {
     font-size: 22px;

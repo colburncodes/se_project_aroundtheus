@@ -89,7 +89,7 @@ class Api {
 
   // PATCH: Edit Profile Picture
   setUserAvatar = async ({ avatar }) => {
-    return await fetch(`${this._baseUrl}/users/me/${avatar}`, {
+    return await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authToken,
