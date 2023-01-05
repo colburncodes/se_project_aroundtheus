@@ -30,6 +30,7 @@ class FormValidator {
     const inputList = [
       ...this._formElement.querySelectorAll(this._settings.inputSelector),
     ];
+
     return inputList.every((input) => input.validity.valid);
   };
 

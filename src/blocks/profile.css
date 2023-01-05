@@ -83,15 +83,15 @@
   position: absolute;
   height: 120px;
   width: 120px;
-  background-image: url("../images//edit-icon.svg");
   background-size: 20%;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0, 0, 0, 0.825);
   border: none;
   border-radius: 50%;
   opacity: 0;
   transition: ease-in-out 0.3s;
+  background-color: rgba(0, 0, 0, 0.825);
+  background-image: url("../images//edit-icon.svg");
 }
 
 .profile__avatar-edit:hover {
