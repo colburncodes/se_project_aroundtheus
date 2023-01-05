@@ -29,6 +29,8 @@ const api = new Api({
 
 const editUserModal = document.querySelector("#modal__edit");
 const addCardModal = document.querySelector("#modal__create");
+const avatarModal = document.querySelector("#avatar-modal");
+
 const imagePopup = new PopupWithImage("#image-modal");
 
 const confirmationPopup = new PopupWithConfirmation(selectors.deleteModal);
@@ -41,6 +43,7 @@ const userInfo = new UserInfo(
 
 const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
+const avatarFormValidator = new FormValidator(avatarModal, defaultFormConfig);
 
 addCardButton.addEventListener("click", () => {
   addFormModal.openModal();
@@ -64,33 +67,23 @@ const addFormModal = new PopupWithForm({
 });
 
 avatarIcon.addEventListener("click", () => {
-  //avatarFormModal.openModal();
-  // const avatarTemplate = document.querySelector(selectors.avatarModal);
-  // console.log(avatarTemplate);
-
-  let avatar =
-    "https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60";
-
-  const updateImage = api
-    .setUserAvatar({ avatar })
-    .then((avatar) => {
-      console.log("Image updated!", avatar);
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-  console.log(updateImage);
+  avatarFormModal.openModal();
 });
 
-// const avatarFormModal = new PopupWithForm({
-//   popupSelector: selectors.avatarModal,
-//   handleFormSubmit: (data) => {
-//     api
-//       .setUserAvatar(data)
-//       .then((data) => console.log(data))
-//       .catch((err) => console.log(err));
-//   },
-// });
+const avatarFormModal = new PopupWithForm({
+  popupSelector: selectors.avatarModal,
+  handleFormSubmit: (avatar) => {
+    avatarFormModal.renderLoading(true);
+
+    api
+      .setUserAvatar(avatar)
+      .then((avatar) => {
+        avatar;
+        avatarFormModal.closeModal();
+      })
+      .catch((err) => console.log(err));
+  },
+});
 
 editUserButton.addEventListener("click", () => {
   const { name, role } = userInfo.getUserInfo();
@@ -178,11 +171,13 @@ api
     console.error(err);
   });
 
-editFormModal.setEventListeners();
 addFormModal.setEventListeners();
-imagePopup.setEventListeners();
-//avatarFormModal.setEventListeners();
+avatarFormModal.setEventListeners();
 confirmationPopup.setEventListeners();
+editFormModal.setEventListeners();
+imagePopup.setEventListeners();
 
-editFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 createFormValidator.enableValidation();
+editFormValidator.enableValidation();
+

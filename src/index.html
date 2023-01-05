@@ -158,21 +158,26 @@
     </div>
     <!-- Avatar Modal -->
     <div class="modal" id="avatar-modal">
-      <div class="modal__avatar-container">
-        <h1 class="modal__title">Change profile picture</h1>
+      <div class="modal__container">
+        <h3 class="modal__title">Change profile picture</h3>
         <button type="button" class="modal__close"></button>
-        <input
-        id="avatar-url"
-        class="modal__input modal__input-avatar"
-        type="url"
-        name="link"
-        placeholder="Avatar Image"
-        pattern="https://.*"
-        required
-      />
-        <button class="modal__save-button modal__button-disabled" type="submit">
-          Save
-        </button>
+        <form class="modal__form modal__form-avatar" novalidate>
+          <fieldset class="modal__form-fieldset">
+            <input
+            id="avatar-url"
+            class="modal__input modal__input-profile-avatar"
+            type="url"
+            name="avatar"
+            placeholder="Avatar Image"
+            pattern="https://.*"
+            required
+          />
+          <span class="modal__input-error avatar-url-error"></span>
+            <button class="modal__save-button modal__button-disabled" type="submit">
+              Save
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
     <!-- Image Modal -->
@@ -186,7 +191,7 @@
     <!-- Delete Confirmation Modal -->
     <div class="modal" id="delete-modal">
       <div class="modal__delete-container">
-        <h1 class="modal__title">Are you sure?</h1>
+        <h3 class="modal__title">Are you sure?</h3>
         <button type="button" class="modal__close"></button>
         <button class="modal__save-button modal__button-disabled" type="submit">
           Yes
