@@ -1,5 +1,9 @@
 export const BASE_URL = "https://around.nomoreparties.co/v1/group-12";
 export const AUTH_TOKEN = "db0cb0b5-b0ef-4843-a8af-9c3db60e50cb";
+export const HEADERS = {
+  authorization: AUTH_TOKEN,
+  "Content-Type": "application/json",
+};
 
 // validation activation
 export const defaultFormConfig = {

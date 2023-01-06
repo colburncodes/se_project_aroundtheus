@@ -2,6 +2,9 @@ class FormValidator {
   constructor(formElement, settings) {
     this._formElement = formElement;
     this._settings = settings;
+    this._buttonElement = this._formElement.querySelector(
+      this._settings.submitButtonSeletor
+    );
   }
 
   _showInputError = (input) => {
@@ -36,15 +39,13 @@ class FormValidator {
 
   _toggleButtonState = () => {
     const isValid = this._checkFormValidity();
-    const button = this._formElement.querySelector(
-      this._settings.submitButtonSeletor
-    );
+
     if (isValid) {
-      button.classList.remove(this._settings.inactiveButtonClass);
-      button.removeAttribute("disabled");
+      this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
+      this._buttonElement.removeAttribute("disabled");
     } else {
-      button.setAttribute("disabled", "true");
-      button.classList.add(this._settings.inactiveButtonClass);
+      this._buttonElement.setAttribute("disabled", "true");
+      this._buttonElement.classList.add(this._settings.inactiveButtonClass);
     }
   };
 
