@@ -17,11 +17,6 @@ class Card {
   }
 
   getCardId = () => this._id;
-  getUserLikesCount() {
-    if (this._likes.length > 0) {
-      return this._likes.length;
-    }
-  }
 
   _getTemplate() {
     const cardTemplate = document
@@ -34,14 +29,7 @@ class Card {
 
   handleDeleteCard() {
     this._element.remove();
-    // this._element = null;
   }
-
-  handleLikeIcon = () => {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-active");
-  };
 
   setLikes(likes) {
     this._likes = likes;
@@ -49,21 +37,25 @@ class Card {
   }
 
   isLiked() {
-    // return true if user liked the card, otherwise false
+    if (this._userId) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  renderLikes() {
-    if (this.isLiked()) {
-      // add active class to likes button
-      // the element can be refactored
-      this._element
-        .querySelector(".card__like-button")
-        .classList.add("card__like-active");
+  _renderLikes() {
+    const likeIconElement = this._element.querySelector(".card__like-count");
+    if (this._likes.length > 0) {
+      likeIconElement.textContent = this._likes.length;
+    }
+
+    const likeButtonElement = this._element.querySelector(".card__like-button");
+
+    if (this.isLiked() == false) {
+      likeButtonElement.classList.remove("card__like-active");
     } else {
-      // remove active class to like button
-      this._element
-        .querySelector(".card__like-button")
-        .classList.remove("card__like-active");
+      likeButtonElement.classList.add("card__like-active");
     }
   }
 
@@ -89,17 +81,20 @@ class Card {
     this._setEventListeners();
     const imageElement = this._element.querySelector(".card__image");
     const imageElementText = this._element.querySelector(".card__label-text");
-    const imageLikes = this._element.querySelector(".card__like-count");
+    const imageDeleteButton = this._element.querySelector(
+      ".card__delete-button"
+    );
 
     imageElement.src = this._link;
     imageElement.alt = this._name;
     imageElementText.textContent = this._name;
-    imageLikes.textContent = this.getUserLikesCount();
+
+    this._renderLikes();
 
     if (this._userId == this._ownerId) {
       this.handleDeleteCard();
     } else {
-      this._element.querySelector(".card__delete-button").remove();
+      imageDeleteButton.remove();
     }
     return this._element;
   }
