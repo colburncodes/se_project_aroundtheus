@@ -70,13 +70,9 @@ function createCard(data, userId) {
         });
       },
       handleUserLikes: () => {
-        const id = card.getCardId();
-        const likes = card.getUserLikesCount();
         api
-          .changeCardLikeStatus(id, likes)
-          .then(() => {
-            card.handleLikeIcon();
-          })
+          .changeCardLikeStatus(card.getCardId(), card.isLiked())
+          .then((response) => card.setLikes(response.likes))
           .catch((err) => console.error(err));
       },
     },
