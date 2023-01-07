@@ -70,10 +70,11 @@ function createCard(data, userId) {
         });
       },
       handleUserLikes: () => {
-        api
-          .changeCardLikeStatus(card.getCardId(), card.isLiked())
-          .then((response) => card.setLikes(response.likes))
-          .catch((err) => console.error(err));
+          api
+            .changeCardLikeStatus(card.getCardId(), card.isLiked())
+            .then((response) => card.setLikes(response.likes))
+            .catch((err) => console.error(err));
+
       },
     },
     "#card-template"
