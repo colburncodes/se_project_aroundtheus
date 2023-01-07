@@ -29,6 +29,7 @@ class Card {
 
   handleDeleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   setLikes(likes) {
@@ -37,25 +38,24 @@ class Card {
   }
 
   isLiked() {
-    if (this._userId) {
-      return true;
-    } else {
-      return false;
-    }
+    return this._likes.find((like) => {
+      if(like._id == this._userId) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 
   _renderLikes() {
-    const likeIconElement = this._element.querySelector(".card__like-count");
     if (this._likes.length > 0) {
-      likeIconElement.textContent = this._likes.length;
+      this.imageCountElement.textContent = this._likes.length;
     }
 
-    const likeButtonElement = this._element.querySelector(".card__like-button");
-
-    if (this.isLiked() == false) {
-      likeButtonElement.classList.remove("card__like-active");
+    if (this.isLiked()) {
+      this.imageLikeElement.classList.add("card__like-active");
     } else {
-      likeButtonElement.classList.add("card__like-active");
+      this.imageLikeElement.classList.remove("card__like-active");
     }
   }
 
@@ -79,23 +79,22 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    const imageElement = this._element.querySelector(".card__image");
-    const imageElementText = this._element.querySelector(".card__label-text");
-    const imageDeleteButton = this._element.querySelector(
+    this.imageElement = this._element.querySelector(".card__image");
+    this.imageElementText = this._element.querySelector(".card__label-text");
+    this.imageDeleteElement = this._element.querySelector(
       ".card__delete-button"
     );
+    this.imageLikeElement = this._element.querySelector(".card__like-button");
+    this.imageCountElement = this._element.querySelector(".card__like-count");
 
-    imageElement.src = this._link;
-    imageElement.alt = this._name;
-    imageElementText.textContent = this._name;
+    this.imageElement.src = this._link;
+    this.imageElement.alt = this._name;
+    this.imageElementText.textContent = this._name;
 
     this._renderLikes();
 
-    if (this._userId == this._ownerId) {
-      this.handleDeleteCard();
-    } else {
-      imageDeleteButton.remove();
-    }
+    this._userId !== this._ownerId ? this.imageDeleteElement.remove() : "";
+
     return this._element;
   }
 }
