@@ -46,6 +46,8 @@ const editFormValidator = new FormValidator(editUserModal, defaultFormConfig);
 const createFormValidator = new FormValidator(addCardModal, defaultFormConfig);
 const avatarFormValidator = new FormValidator(avatarModal, defaultFormConfig);
 
+let cardsList;
+
 function createCard(data, userId) {
   const card = new Card(
     {
@@ -70,11 +72,12 @@ function createCard(data, userId) {
         });
       },
       handleUserLikes: () => {
-          api
-            .changeCardLikeStatus(card.getCardId(), card.isLiked())
-            .then((response) => card.setLikes(response.likes))
-            .catch((err) => console.error(err));
-
+        api
+          .changeCardLikeStatus(card.getCardId(), !card.isLiked())
+          .then((response) => {
+            card.setLikes(response.likes);
+          })
+          .catch((err) => console.error(err));
       },
     },
     "#card-template"
@@ -93,7 +96,8 @@ const addFormModal = new PopupWithForm({
     api
       .addCard(data)
       .then((data) => {
-        createCard(data);
+        const card = createCard(data);
+        cardsList.addItem(card);
         createModalForm.reset();
         addFormModal.closeModal();
       })
@@ -167,7 +171,7 @@ api
     userInfo.setAvatar(avatar);
 
     const userId = user._id;
-    const cardsList = new Section(
+    cardsList = new Section(
       {
         items: cards,
         renderer: (data) => {
