@@ -23,7 +23,6 @@ class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._submitButton.classList.remove("modal__button-disabled");
   }
 
 }

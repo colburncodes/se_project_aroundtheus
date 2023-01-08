@@ -38,19 +38,12 @@ class Card {
   }
 
   isLiked() {
-    return this._likes.find((like) => {
-      if(like._id == this._userId) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    // return true if user liked the card, otherwise false
+    return this._likes.some((like) => like._id === this._userId);
   }
 
   _renderLikes() {
-    if (this._likes.length > 0) {
-      this.imageCountElement.textContent = this._likes.length;
-    }
+    this.imageCountElement.textContent = this._likes.length || "";
 
     if (this.isLiked()) {
       this.imageLikeElement.classList.add("card__like-active");
@@ -93,7 +86,9 @@ class Card {
 
     this._renderLikes();
 
-    this._userId !== this._ownerId ? this.imageDeleteElement.remove() : "";
+    if (this._userId !== this._ownerId) {
+      this.imageDeleteElement.remove();
+    } 
 
     return this._element;
   }
