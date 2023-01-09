@@ -96,7 +96,7 @@ const addFormModal = new PopupWithForm({
     api
       .addCard(data)
       .then((data) => {
-        const card = createCard(data);
+        const card = createCard(data, data.owner._id);
         cardsList.addItem(card);
         createModalForm.reset();
         addFormModal.closeModal();
