@@ -5,6 +5,7 @@
 * Intro  
 * Figma  
 * Images  
+* Technologies Used
   
 **Intro**
   
